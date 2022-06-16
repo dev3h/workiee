@@ -1,10 +1,15 @@
 import React from "react";
 import Carousel from "nuka-carousel";
 import { Grid } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 
 export default function Home() {
+  const navigate = useNavigate();
+  const onMoveToProduct = () =>  {
+    navigate("/products", { replace: true});
+  };
   return (
     <div className="wrapper">
       {/* header */}
@@ -68,6 +73,7 @@ export default function Home() {
                 <button
                   className="absolute top-2/4 left-2/4 w-28 h-12 bg-white/80 rounded-md font-medium hover:bg-violet-500/80 transition-all duration-500 hover:text-white"
                   style={{ transform: "translate(-50%, -50%)" }}
+                  onClick={onMoveToProduct}
                 >
                   WOMEN
                 </button>

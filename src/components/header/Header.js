@@ -42,7 +42,7 @@ export default function Header() {
               <Link to="/" className="uppercase hover:text-violet-500">
                 portfolio
               </Link>
-              <Link to="/" className="uppercase hover:text-violet-500">
+              <Link to="/products" className="uppercase hover:text-violet-500">
                 women
               </Link>
               <Link to="/" className="uppercase hover:text-violet-500">
@@ -52,10 +52,10 @@ export default function Header() {
           </Grid>
           <Grid item lg={4}>
             <div className="flex justify-end items-center gap-4">
-              <CgSearch className="cursor-pointer hover:text-violet-500 text-lg"/>
-              <HiOutlineShoppingBag className="cursor-pointer hover:text-violet-500 text-lg"/>
-              <HiOutlineUser className="cursor-pointer hover:text-violet-500 text-lg"/>
-              <BsSliders className="cursor-pointer hover:text-violet-500 text-lg"/>
+              <CgSearch className="cursor-pointer hover:text-violet-500 text-lg" title="search"/>
+              <HiOutlineShoppingBag className="cursor-pointer hover:text-violet-500 text-lg" title="cart"/>
+              <HiOutlineUser className="cursor-pointer hover:text-violet-500 text-lg" title="My Account"/>
+              <BsSliders className="cursor-pointer hover:text-violet-500 text-lg" title="Settings"/>
             </div>
           </Grid>
         </Grid>
