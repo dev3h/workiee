@@ -27,35 +27,35 @@ export default function Header() {
           </Grid>
           <Grid item lg={6}>
             <div className="flex justify-center items-center gap-6">
-              <Link to="/" className="uppercase text-violet-500">
+              <Link to="/" className="uppercase text-pri">
                 home
               </Link>
-              <Link to="/" className="uppercase hover:text-violet-500">
+              <Link to="/" className="uppercase transition-all duration-300 hover:text-pri">
                 shop
               </Link>
-              <Link to="/" className="uppercase hover:text-violet-500">
+              <Link to="/" className="uppercase transition-all duration-300 hover:text-pri">
                 page
               </Link>
-              <Link to="/" className="uppercase hover:text-violet-500">
+              <Link to="/" className="uppercase transition-all duration-300 hover:text-pri">
                 blog
               </Link>
-              <Link to="/" className="uppercase hover:text-violet-500">
+              <Link to="/" className="uppercase transition-all duration-300 hover:text-pri">
                 portfolio
               </Link>
-              <Link to="/products" className="uppercase hover:text-violet-500">
+              <Link to="/products" className="uppercase transition-all duration-300 hover:text-pri">
                 women
               </Link>
-              <Link to="/" className="uppercase hover:text-violet-500">
+              <Link to="/" className="uppercase transition-all duration-300 hover:text-pri">
                 men
               </Link>
             </div>
           </Grid>
           <Grid item lg={4}>
             <div className="flex justify-end items-center gap-4">
-              <CgSearch className="cursor-pointer hover:text-violet-500 text-lg" title="search"/>
-              <HiOutlineShoppingBag className="cursor-pointer hover:text-violet-500 text-lg" title="cart"/>
-              <HiOutlineUser className="cursor-pointer hover:text-violet-500 text-lg" title="My Account"/>
-              <BsSliders className="cursor-pointer hover:text-violet-500 text-lg" title="Settings"/>
+              <CgSearch className="cursor-pointer transition-all duration-300 hover:text-pri text-lg" title="search"/>
+              <HiOutlineShoppingBag className="cursor-pointer transition-all duration-300 hover:text-pri text-lg" title="cart"/>
+              <HiOutlineUser className="cursor-pointer transition-all duration-300 hover:text-pri text-lg" title="My Account"/>
+              <BsSliders className="cursor-pointer transition-all duration-300 hover:text-pri text-lg" title="Settings"/>
             </div>
           </Grid>
         </Grid>

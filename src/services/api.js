@@ -1,4 +1,4 @@
-import {collectionFields, productTypeFields, colors} from './fakeData'
+import {collectionFields, productTypeFields, womenColors, womenProducts} from './fakeData'
 export const getCollections = () => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -13,10 +13,17 @@ export const getProductTypes = () => {
     }, 1000);
   });
 };
-export const getColors = () => {
+export const getWomenColors = () => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve(colors);
+      resolve(womenColors);
+    }, 1000);
+  });
+};
+export const getWomenProducts = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(womenProducts);
     }, 1000);
   });
 };

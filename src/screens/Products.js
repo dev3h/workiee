@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Container,
   Breadcrumbs,
@@ -9,13 +9,23 @@ import {
   AccordionDetails,
 } from "@mui/material";
 import { RiArrowDropDownLine } from "react-icons/ri";
+import { FaRegSquare } from "react-icons/fa";
+import { BsFillGridFill, BsFillGrid3X3GapFill } from "react-icons/bs";
+import { HiOutlineShoppingBag } from "react-icons/hi";
+import { FcGrid } from "react-icons/fc";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
-import { getCollections, getProductTypes, getColors } from "../services/api";
+import {
+  getCollections,
+  getProductTypes,
+  getWomenColors,
+  getWomenProducts,
+} from "../services/api";
 export default function Products() {
   const [collection, setCollection] = useState([]);
   const [productType, setProductType] = useState([]);
-  const [color, setColor] = useState([]);
+  const [womenColor, setWomenColor] = useState([]);
+  const [womenProduct, setWomenProduct] = useState([]);
   useEffect(() => {
     const getAllCollections = async () => {
       const collections = await getCollections();
@@ -26,11 +36,28 @@ export default function Products() {
   useEffect(() => {
     const getAllProductTypes = async () => {
       const productTypes = await getProductTypes();
-      setCollection(productTypes);
+      setProductType(productTypes);
     };
     getAllProductTypes();
   }, []);
-
+  useEffect(() => {
+    const getAllWomenColors = async () => {
+      const productTypes = await getWomenColors();
+      setWomenColor(productTypes);
+    };
+    getAllWomenColors();
+  }, []);
+  useEffect(() => {
+    const getAllWomenProducts = async () => {
+      const productTypes = await getWomenProducts();
+      setWomenProduct(productTypes);
+    };
+    getAllWomenProducts();
+  }, []);
+  const navigate = useNavigate();
+  const onMoveDetail = (item) => () => {
+    navigate(`/detail/${item.id}`);
+  };
   return (
     <div className="wrapper">
       {/* header */}
@@ -40,12 +67,12 @@ export default function Products() {
       {/* products main */}
       <div className="products-main">
         {/* breadcrumb */}
-        <div className="bg-slate-200">
+        <div className="bg-whiteF7">
           <Container maxWidth="lg">
             <Breadcrumbs aria-label="breadcrumb">
               <Link
                 to={"/"}
-                className="transition-all duration-500 hover:text-violet-500"
+                className="transition-all duration-500 hover:text-pri"
               >
                 Home
               </Link>
@@ -54,11 +81,12 @@ export default function Products() {
           </Container>
         </div>
         {/*  */}
-        <div>
+        <div className="mt-[52px]">
           <Container maxWidth="lg">
             <Grid container spacing={2} columns={12}>
+              {/* side bar */}
               <Grid item lg={4}>
-                <div>
+                <div className="pr-[50px]">
                   {/* COLLECTIONS */}
                   <Accordion className="text-unset">
                     <AccordionSummary
@@ -70,10 +98,10 @@ export default function Products() {
                     </AccordionSummary>
                     <AccordionDetails>
                       {collection.map((item, key) => (
-                        <p className="p-1" key={key}>
+                        <p className="p-1 font-light" key={key}>
                           <Link
                             to={"/"}
-                            className="transition-all duration-500 hover:text-violet-500"
+                            className="transition-all duration-500 hover:text-pri"
                           >
                             {item.name}
                           </Link>
@@ -91,11 +119,11 @@ export default function Products() {
                       <h4 className="font-medium">PRODUCT TYPE</h4>
                     </AccordionSummary>
                     <AccordionDetails>
-                      {collection.map((item, key) => (
+                      {productType.map((item, key) => (
                         <p className="p-1" key={key}>
                           <label
-                            for={item.id}
-                            className="cursor-pointer transition-all duration-500 hover:text-violet-500"
+                            htmlFor={item.id}
+                            className="font-light cursor-pointer transition-all duration-500 hover:text-pri"
                           >
                             <input
                               type="checkbox"
@@ -117,28 +145,73 @@ export default function Products() {
                     >
                       <h4 className="font-medium">COLOR</h4>
                     </AccordionSummary>
-                    <AccordionDetails>
-                      {color.map((item, key) => (
-                        <p className="p-1" key={key}>
+                    <AccordionDetails className="flex">
+                      {womenColor.map((item, key) => (
+                        <div className="p-1" key={key}>
                           <label
-                            for={item.id}
-                            className="cursor-pointer transition-all duration-500 hover:text-violet-500"
+                            htmlFor={item.id}
+                            className="cursor-pointer transition-all duration-500 hover:text-pri"
                           >
                             <input
                               type="checkbox"
                               id={item.id}
-                              className="mr-1"
+                              className="mr-1 hidden"
                             />
-                            <div></div>
+                            <div
+                              className="w-8 h-8 rounded-md"
+                              title={item.name}
+                              style={{ background: `${item.hexId}` }}
+                            ></div>
                           </label>
-                        </p>
+                        </div>
                       ))}
                     </AccordionDetails>
                   </Accordion>
                 </div>
               </Grid>
+              {/* grid products */}
               <Grid item lg={8}>
-                xs=8
+                {/* filter bar */}
+                <div className="filter-products flex justify-between items-center">
+                  <h2 className="font-medium text-2xl">Women({womenProduct.length})</h2>
+                  <div className="flex items-center gap-3">
+                    <select class="sort-position font-light cursor-pointer">
+                      <option>Featured</option>
+                      <option>Name Ascending</option>
+                      <option>Name Descending</option>
+                      <option>Date Ascending</option>
+                      <option>Date Descending</option>
+                      <option>Price Ascending</option>
+                      <option>Price Descending</option>
+                      <option>Best Selling</option>
+                    </select>
+                    <div className="flex items-center gap-2 cursor-pointer">
+                      <FaRegSquare className="text-grey777 hover:text-black19" />
+                      <BsFillGridFill className="text-grey777 hover:text-black19" />
+                      <BsFillGrid3X3GapFill className="text-grey777 hover:text-black19" />
+                      <FcGrid className="text-black19" />
+                    </div>
+                  </div>
+                </div>
+                {/* grid products */}
+                <div className="grid grid-cols-4 mt-[15px] gap-5">
+                  {/* product */}
+                  {womenProduct.map((item, key) => (
+                    <div onClick={onMoveDetail(item)} key={key} className="cursor-pointer">
+                      <img src={item.image} alt={item.name} />
+                      <div className="text-center pt-4">
+                        <h6 className="text-xs text-[#999]">{item.band}</h6>
+                        <div>{item.star}</div>
+                        <h2 className="text-sm">{item.name}</h2>
+                        <div className="font-medium">{item.price}</div>
+                        <button className="px-4 py-[9px] bg-pri text-white flex items-center justify-center h-10 gap-[5px] rounded-md mx-auto mt-3">
+                          <HiOutlineShoppingBag/>
+                          <span>ADD TO CART</span>
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </Grid>
             </Grid>
           </Container>

@@ -71,7 +71,7 @@ export default function Home() {
                   className="row-span-2"
                 />
                 <button
-                  className="absolute top-2/4 left-2/4 w-28 h-12 bg-white/80 rounded-md font-medium hover:bg-violet-500/80 transition-all duration-500 hover:text-white"
+                  className="absolute top-2/4 left-2/4 w-28 h-12 bg-white/80 rounded-md font-medium hover:bg-[#2879fe]/80 transition-all duration-500 hover:text-white"
                   style={{ transform: "translate(-50%, -50%)" }}
                   onClick={onMoveToProduct}
                 >
@@ -89,7 +89,7 @@ export default function Home() {
                       alt="workiee-category3"
                     />
                     <button
-                      className="absolute top-2/4 left-2/4 w-28 h-12 bg-white/80 rounded-md font-medium hover:bg-violet-500/80 transition-all duration-500 hover:text-white"
+                      className="absolute top-2/4 left-2/4 w-28 h-12 bg-white/80 rounded-md font-medium hover:bg-[#2879fe]/80 transition-all duration-500 hover:text-white"
                       style={{ transform: "translate(-50%, -50%)" }}
                     >
                       MEN
@@ -101,7 +101,7 @@ export default function Home() {
                       alt="workiee-category4"
                     />
                     <button
-                      className="absolute top-2/4 left-2/4 w-40 h-12 bg-white/80 rounded-md font-medium hover:bg-violet-500/80 transition-all duration-500 hover:text-white"
+                      className="absolute top-2/4 left-2/4 w-40 h-12 bg-white/80 rounded-md font-medium hover:bg-[#2879fe]/80 transition-all duration-500 hover:text-white"
                       style={{ transform: "translate(-50%, -50%)" }}
                     >
                       ACCESSORIES
@@ -114,7 +114,7 @@ export default function Home() {
                     alt="workiee-category6"
                   />
                   <button
-                    className="absolute top-2/4 left-2/4 w-28 h-12 bg-white/80 rounded-md font-medium hover:bg-violet-500/80 transition-all duration-500 hover:text-white"
+                    className="absolute top-2/4 left-2/4 w-28 h-12 bg-white/80 rounded-md font-medium hover:bg-[#2879fe]/80 transition-all duration-500 hover:text-white"
                     style={{ transform: "translate(-50%, -50%)" }}
                   >
                     SHOES
