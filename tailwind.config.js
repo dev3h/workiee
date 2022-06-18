@@ -9,6 +9,7 @@ module.exports = {
         black30: "#303030",
         black19: "#191919",
         whiteF7: "#f7f8fa",
+        whiteD8: '#d8d8d8',
       },
       fontFamily: {},
       fontSize: {},

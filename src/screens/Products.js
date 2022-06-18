@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import {
   Container,
   Breadcrumbs,
@@ -21,6 +22,7 @@ import {
   getWomenColors,
   getWomenProducts,
 } from "../services/api";
+import { addProduct } from "../reducers/productSlice";
 export default function Products() {
   const [collection, setCollection] = useState([]);
   const [productType, setProductType] = useState([]);
@@ -57,6 +59,10 @@ export default function Products() {
   const navigate = useNavigate();
   const onMoveDetail = (item) => () => {
     navigate(`/detail/${item.id}`);
+  };
+  const dispatch = useDispatch();
+  const addToCart = (item) => () => {
+    dispatch(addProduct(item));
   };
   return (
     <div className="wrapper">
@@ -173,7 +179,9 @@ export default function Products() {
               <Grid item lg={8}>
                 {/* filter bar */}
                 <div className="filter-products flex justify-between items-center">
-                  <h2 className="font-medium text-2xl">Women({womenProduct.length})</h2>
+                  <h2 className="font-medium text-2xl">
+                    Women({womenProduct.length})
+                  </h2>
                   <div className="flex items-center gap-3">
                     <select class="sort-position font-light cursor-pointer">
                       <option>Featured</option>
@@ -197,15 +205,23 @@ export default function Products() {
                 <div className="grid grid-cols-4 mt-[15px] gap-5">
                   {/* product */}
                   {womenProduct.map((item, key) => (
-                    <div onClick={onMoveDetail(item)} key={key} className="cursor-pointer">
-                      <img src={item.image} alt={item.name} />
+                    <div key={key}>
+                      <img
+                        onClick={onMoveDetail(item)}
+                        className="cursor-pointer"
+                        src={item.image}
+                        alt={item.name}
+                      />
                       <div className="text-center pt-4">
                         <h6 className="text-xs text-[#999]">{item.band}</h6>
                         <div>{item.star}</div>
                         <h2 className="text-sm">{item.name}</h2>
                         <div className="font-medium">{item.price}</div>
-                        <button className="px-4 py-[9px] bg-pri text-white flex items-center justify-center h-10 gap-[5px] rounded-md mx-auto mt-3">
-                          <HiOutlineShoppingBag/>
+                        <button
+                          onClick={addToCart(item)}
+                          className="px-4 py-[9px] bg-pri text-white flex items-center justify-center h-10 gap-[5px] rounded-md mx-auto mt-3"
+                        >
+                          <HiOutlineShoppingBag />
                           <span>ADD TO CART</span>
                         </button>
                       </div>
