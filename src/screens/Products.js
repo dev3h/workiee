@@ -44,15 +44,15 @@ export default function Products() {
   }, []);
   useEffect(() => {
     const getAllWomenColors = async () => {
-      const productTypes = await getWomenColors();
-      setWomenColor(productTypes);
+      const womenColors = await getWomenColors();
+      setWomenColor(womenColors);
     };
     getAllWomenColors();
   }, []);
   useEffect(() => {
     const getAllWomenProducts = async () => {
-      const productTypes = await getWomenProducts();
-      setWomenProduct(productTypes);
+      const womenProducts = await getWomenProducts();
+      setWomenProduct(womenProducts);
     };
     getAllWomenProducts();
   }, []);
@@ -64,6 +64,7 @@ export default function Products() {
   const addToCart = (item) => () => {
     dispatch(addProduct(item));
   };
+
   return (
     <div className="wrapper">
       {/* header */}
@@ -151,7 +152,7 @@ export default function Products() {
                     >
                       <h4 className="font-medium">COLOR</h4>
                     </AccordionSummary>
-                    <AccordionDetails className="flex">
+                    <AccordionDetails className="flex flex-wrap">
                       {womenColor.map((item, key) => (
                         <div className="p-1" key={key}>
                           <label

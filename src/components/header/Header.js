@@ -4,7 +4,9 @@ import { Container, Grid, Badge } from "@mui/material";
 import { CgSearch } from "react-icons/cg";
 import { HiOutlineShoppingBag, HiOutlineUser } from "react-icons/hi";
 import { BsSliders } from "react-icons/bs";
+import { useSelector} from "react-redux";
 export default function Header() {
+  const cart = useSelector((store) => store.productSlice.cart);
   return (
     <div className="header h-14 flex items-center">
       <Container maxWidth="lg">
@@ -75,7 +77,7 @@ export default function Header() {
                 title="search"
               />
               <Link to={'/cart'}>
-                <Badge badgeContent={1} color="primary">
+                <Badge badgeContent={cart.length} color="primary">
                   <HiOutlineShoppingBag
                     className="cursor-pointer transition-all duration-300 hover:text-pri text-lg"
                     title="cart"

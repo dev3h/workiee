@@ -71,6 +71,7 @@ export default function Detail() {
                           <input
                             type="text"
                             value="1"
+                            
                             className="block w-[50px] h-full text-center bg-whiteF7"
                           />
                           <button className="block w-[50px] h-full  text-xl transition-all duration-300 text-whiteD8 hover:text-black19">

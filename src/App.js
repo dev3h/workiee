@@ -3,6 +3,7 @@ import React from "react";
 import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
 import { Provider } from "react-redux";
+// import allReducer from "././reducer";
 import productSlice from "./reducers/productSlice";
 import AppContainer from "./AppContainer";
 // config redux perist

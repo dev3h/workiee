@@ -101,7 +101,7 @@ export const womenProducts = [
   {
     id: 1,
     band: "ZARA",
-    price: "$400",
+    price: 400,
     image: require("../assets/images/womenProducts/img1.webp"),
     name: "Tailored Fit Mesh-Panel Polo",
     type: "Polo",
@@ -111,7 +111,7 @@ export const womenProducts = [
   {
     id: 2,
     band: "GAP",
-    price: "$380.00",
+    price: 380.00,
     image: require("../assets/images/womenProducts/img2.webp"),
     name: "Premier Cropped Skinny Jean",
     type: "Jeans",
@@ -121,7 +121,7 @@ export const womenProducts = [
   {
     id: 3,
     band: "GUESS",
-    price: "$480.00",
+    price: 480.00,
     image: require("../assets/images/womenProducts/img3.webp"),
     name: "Relaxed-Fit Cotton Shirt",
     type: "Shirt",
@@ -131,7 +131,7 @@ export const womenProducts = [
   {
     id: 4,
     band: "LACOSTE",
-    price: "$440.00",
+    price: 440.00,
     image: require("../assets/images/womenProducts/img4.webp"),
     name: "Viscose-Cashmere Scarf",
     type: "Scarf",
