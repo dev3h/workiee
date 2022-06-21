@@ -5,6 +5,7 @@ import { combineReducers } from "redux";
 import { Provider } from "react-redux";
 // import allReducer from "././reducer";
 import productSlice from "./reducers/productSlice";
+import authSlice from "./reducers/authSlice";
 import AppContainer from "./AppContainer";
 // config redux perist
 import { PersistGate } from "redux-persist/integration/react";
@@ -28,6 +29,7 @@ export default function App() {
 
   const allReducers = combineReducers({
     productSlice: productSlice,
+    authSlice: authSlice,
   });
 
   const persistedReducer = persistReducer(persistConfig, allReducers);

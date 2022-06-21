@@ -100,9 +100,11 @@ export default function Header() {
                   className="opacity-0 absolute z-10 right-0 top-6 w-[280px] h-[205.2px] py-[30px] pl-[39px] pr-5 bg-white shadow-[0_2px_5px_rgba(0,0,0,0.5)] transition-all duration-300"
                   style={{ opacity: show ? "1" : "0" }}
                 >
-                  <div className="flex gap-1 h-[28.8px]">
-                    <BiLock />
-                    Sign In
+                  <div>
+                    <Link to={"/login"} className="flex gap-1 h-[28.8px]">
+                      <BiLock />
+                      Sign In
+                    </Link>
                   </div>
                   <div className="flex gap-1 h-[28.8px]">
                     <HiOutlineUser />
@@ -117,8 +119,7 @@ export default function Header() {
                     Wishlist
                   </div>
                   <div className="flex gap-1 h-[28.8px]">
-                    <BiGitCompare />y
-                    Compare
+                    <BiGitCompare />y Compare
                   </div>
                 </div>
               </div>
