@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 const initState = {
   cart: [],
+  cartTotalAmount: 0,
 };
 const productSlice = createSlice({
   name: "productSlice",
@@ -34,13 +35,36 @@ const productSlice = createSlice({
         return item;
       });
     },
-
     removeProduct: (state, action) => {
       state.cart = state.cart.filter((item) => item.id !== action.payload.id);
     },
+    clearCart: (state, action) => {
+      state.cart = [];
+    },
+    getTotals: (state, action) => {
+      let { total } = state.cart.reduce(
+        (cartTotal, cartItem) => {
+          const { price, quantity } = cartItem;
+          const itemTotal = price * quantity;
+          cartTotal.total += itemTotal;
+          cartTotal.quantity += quantity;
+          return cartTotal;
+        },
+        {
+          total: 0,
+          quantity: 0,
+        }
+      );
+      state.cartTotalAmount = total;
+    },
   },
 });
-export const { addProduct, changeQuantity, removeProduct } =
-  productSlice.actions;
+export const {
+  addProduct,
+  changeQuantity,
+  removeProduct,
+  clearCart,
+  getTotals,
+} = productSlice.actions;
 
 export default productSlice.reducer;

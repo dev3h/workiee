@@ -206,18 +206,18 @@ export default function Products() {
                 <div className="grid grid-cols-4 mt-[15px] gap-5">
                   {/* product */}
                   {womenProduct.map((item, key) => (
-                    <div key={key}>
+                    <div key={key} className="overflow-hidden group">
                       <img
                         onClick={onMoveDetail(item)}
                         className="cursor-pointer"
                         src={item.image}
                         alt={item.name}
                       />
-                      <div className="text-center pt-4">
+                      <div className="text-center pt-4 translate-y-10 transition-all duration-300  group-hover:translate-y-0">
                         <h6 className="text-xs text-[#999]">{item.band}</h6>
                         <div>{item.star}</div>
                         <h2 className="text-sm">{item.name}</h2>
-                        <div className="font-medium">{item.price}</div>
+                        <div className="font-medium">${item.price}</div>
                         <button
                           onClick={addToCart(item)}
                           className="px-4 py-[9px] bg-pri text-white flex items-center justify-center h-10 gap-[5px] rounded-md mx-auto mt-3"

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Container, Breadcrumbs, Grid } from "@mui/material";
-import {HiOutlineShoppingBag} from "react-icons/hi";
+import { HiOutlineShoppingBag } from "react-icons/hi";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import { getProductDetail } from "../services/api";
@@ -60,7 +60,7 @@ export default function Detail() {
                         {productDetail.name}
                       </h1>
                       <div className="font-medium text-3xl text-pri">
-                        {productDetail.price}
+                        ${productDetail.price}
                       </div>
                       <div>{productDetail.star}</div>
                       <div className="flex justify-between items-center mt-[33px] h-[50px]">
@@ -71,7 +71,6 @@ export default function Detail() {
                           <input
                             type="text"
                             value="1"
-                            
                             className="block w-[50px] h-full text-center bg-whiteF7"
                           />
                           <button className="block w-[50px] h-full  text-xl transition-all duration-300 text-whiteD8 hover:text-black19">

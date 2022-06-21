@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Container, Grid, Badge } from "@mui/material";
+import { Container, Grid, Badge, Menu, MenuItem } from "@mui/material";
 import { CgSearch } from "react-icons/cg";
 import { HiOutlineShoppingBag, HiOutlineUser } from "react-icons/hi";
 import { BsSliders } from "react-icons/bs";
-import { useSelector} from "react-redux";
+import { BiLock, BiGitCompare } from "react-icons/bi";
+import { FaRegHeart } from "react-icons/fa";
+import { useSelector } from "react-redux";
 export default function Header() {
+  const [show, setShow] = useState(false);
+  const onShowMenu = () => {
+    setShow(!show);
+  };
   const cart = useSelector((store) => store.productSlice.cart);
   return (
     <div className="header h-14 flex items-center">
@@ -18,7 +24,7 @@ export default function Header() {
           justifyContent="center"
           className="h-12"
         >
-          <Grid item lg={2} className="">
+          <Grid item lg={2}>
             <Link to="/" className="w-24 h-5">
               <img
                 src={require("../../assets/images/Logo.webp")}
@@ -76,7 +82,7 @@ export default function Header() {
                 className="cursor-pointer transition-all duration-300 hover:text-pri text-lg"
                 title="search"
               />
-              <Link to={'/cart'}>
+              <Link to={"/cart"}>
                 <Badge badgeContent={cart.length} color="primary">
                   <HiOutlineShoppingBag
                     className="cursor-pointer transition-all duration-300 hover:text-pri text-lg"
@@ -84,11 +90,39 @@ export default function Header() {
                   />
                 </Badge>
               </Link>
+              <div className="relative">
+                <HiOutlineUser
+                  className="cursor-pointer transition-all duration-300 hover:text-pri text-lg"
+                  title="My Account"
+                  onClick={onShowMenu}
+                />
+                <div
+                  className="opacity-0 absolute z-10 right-0 top-6 w-[280px] h-[205.2px] py-[30px] pl-[39px] pr-5 bg-white shadow-[0_2px_5px_rgba(0,0,0,0.5)] transition-all duration-300"
+                  style={{ opacity: show ? "1" : "0" }}
+                >
+                  <div className="flex gap-1 h-[28.8px]">
+                    <BiLock />
+                    Sign In
+                  </div>
+                  <div className="flex gap-1 h-[28.8px]">
+                    <HiOutlineUser />
+                    Register
+                  </div>
+                  <div className="flex gap-1 h-[28.8px]">
+                    <HiOutlineShoppingBag />
+                    View Cart
+                  </div>
+                  <div className="flex gap-1 h-[28.8px]">
+                    <FaRegHeart />
+                    Wishlist
+                  </div>
+                  <div className="flex gap-1 h-[28.8px]">
+                    <BiGitCompare />y
+                    Compare
+                  </div>
+                </div>
+              </div>
 
-              <HiOutlineUser
-                className="cursor-pointer transition-all duration-300 hover:text-pri text-lg"
-                title="My Account"
-              />
               <BsSliders
                 className="cursor-pointer transition-all duration-300 hover:text-pri text-lg"
                 title="Settings"
