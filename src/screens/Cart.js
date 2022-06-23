@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Breadcrumbs, Grid } from "@mui/material";
@@ -39,9 +39,9 @@ export default function Cart() {
   const onChangeInput = (item) => (ev) => {
     dispatch(changeQuantity({ ...item, quantity: ev.target.value }));
   };
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(getTotals());
-  }, [cartData, dispatch])
+  }, [cartData, dispatch]);
   const subTotal = useSelector((store) => store.productSlice.cartTotalAmount);
   return (
     <div className="wrapper">

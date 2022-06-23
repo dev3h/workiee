@@ -1,15 +1,18 @@
-import React from "react";
-import { useFormik } from "formik";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Container, Breadcrumbs, Grid } from "@mui/material";
+import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useDispatch, useSelector } from "react-redux";
+import { Container, Breadcrumbs, Grid } from "@mui/material";
+import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
-import { useSelector } from "react-redux";
-
+import { createAccount } from "../reducers/authSlice";
 export default function Login() {
-  const account = useSelector((store)=> store.authSlice.account)
+  const account = useSelector((store) => store.authSlice.account);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [isViewPass, setIsViewPass] = useState(false);
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -23,13 +26,26 @@ export default function Login() {
         .matches(/(?=.*[0-9])/, "Password must contain a number."),
     }),
     onSubmit: (values) => {
-      console.log("values: ", values);
-     if(values.email === account.email && values.password === account.password) {
-      alert('login success')
-      navigate('/')
-     }
+      dispatch(createAccount(values));
+      if (
+        values.email === account.email &&
+        values.password === account.password
+      ) {
+        alert("login success");
+        navigate("/");
+      } else {
+        alert("login failed");
+      }
     },
   });
+  const onChangeViewPass = () => {
+    setIsViewPass(!isViewPass);
+  };
+  useEffect(() => {
+    if (account) {
+      navigate("/");
+    }
+  }, [account]);
   return (
     <div className="wrapper">
       {/* header */}
@@ -111,15 +127,27 @@ export default function Login() {
                     >
                       PASSWORD <span>*</span>
                     </label>
-                    <input
-                      type="password"
-                      name="password"
-                      value={formik.values.password}
-                      onChange={formik.handleChange}
-                      className="block w-full h-10 py-[2px] pl-[15px] pr-3 border border-solid border-whiteF7 rounded-md bg-whiteF7 transition-all duration-300 focus:border-pri focus: outline-none"
-                      id="password"
-                      placeholder="Enter Password"
-                    />
+                    <div className="relative">
+                      <input
+                        type={isViewPass ? "text" : "password"}
+                        name="password"
+                        value={formik.values.password}
+                        onChange={formik.handleChange}
+                        className="block w-full h-10 py-[2px] pl-[15px] pr-3 border border-solid border-whiteF7 rounded-md bg-whiteF7 transition-all duration-300 focus:border-pri focus: outline-none"
+                        id="password"
+                        placeholder="Enter Password"
+                      />
+                      <div
+                        onClick={onChangeViewPass}
+                        className="absolute top-1/2 right-3 -translate-y-1/2"
+                      >
+                        {isViewPass ? (
+                          <AiOutlineEyeInvisible />
+                        ) : (
+                          <AiOutlineEye />
+                        )}
+                      </div>
+                    </div>
                     {formik.errors.password && formik.touched.password && (
                       <span className="text-sm text-red-600">
                         {formik.errors.password}

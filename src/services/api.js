@@ -1,9 +1,17 @@
 import {
+  categories,
   collectionFields,
   productTypeFields,
   womenColors,
   womenProducts,
 } from "./fakeData";
+export const getCategories = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(categories);
+    }, 1000);
+  });
+}
 export const getCollections = () => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {

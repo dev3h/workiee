@@ -20,7 +20,7 @@ export default function Footer() {
               <input
                 type="email"
                 placeholder="Enter your e-mail"
-                className="pt-1 pr-3 pb-px pl-4 w-96 h-10 rounded-tl-md rounded-bl-md"
+                className="pt-1 pr-3 pb-px pl-4 w-96 h-10 rounded-tl-md rounded-bl-md focus:outline-none"
               />
               <button className="transition-all duration-300 uppercase bg-black30 p-4 px-5 rounded-tr-md rounded-br-md text-white hover:bg-black">
                 join us

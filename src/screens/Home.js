@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Grid } from "@mui/material";
 import Slider from "react-slick";
 import { useNavigate } from "react-router-dom";
@@ -8,8 +8,17 @@ import { TbArrowBackUp } from "react-icons/tb";
 import { FaShippingFast } from "react-icons/fa";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
+import { getCategories } from "../services/api";
 
 export default function Home() {
+  const [category, setCategory] = useState([]);
+  useEffect(() => {
+    const getAllCategories = async () => {
+      const categories = await getCategories();
+      setCategory(categories);
+    };
+    getAllCategories();
+  }, []);
   function SampleNextArrow(props) {
     const { className, style } = props;
     return <div className={className} style={{ ...style, display: "none" }} />;
@@ -63,7 +72,7 @@ export default function Home() {
       <div>
         <Header />
       </div>
-      <div className="home-main">
+      <div className="home-main mt-8">
         {/* hero carousel */}
         <div className="carousel px-[17px] ">
           <Grid container spacing={2} lg={12}>
@@ -140,7 +149,7 @@ export default function Home() {
                 />
                 <div
                   onClick={onMoveToProduct}
-                  className="absolute bottom-8 left-2/4 -translate-x-2/4 flex flex-col gap-2 justify-center items-center w-[223.16px] h-[114px] bg-white/90 rounded-md text-center font-medium transition-all duration-500 group-hover:scale-110 group-hover:bg-pri/80 group-hover:text-white"
+                  className="absolute bottom-8 left-2/4 -translate-x-2/4 flex flex-col gap-2 justify-center items-center w-[223.16px] h-[114px] bg-white/90 rounded-md text-center font-medium transition-all duration-500 ease-in-out group-hover:scale-110 group-hover:bg-pri/80 group-hover:text-white"
                 >
                   <div>TOP VIEW IN THIS WEEK</div>
                   <div className="text-[26px]">TRENDING</div>
@@ -149,99 +158,36 @@ export default function Home() {
             </Grid>
           </Grid>
         </div>
+        {/* banner */}
+        <div className="py-10">
+          <img src={require("../assets/images/banner/img1.gif")} alt="" />
+        </div>
         {/* category */}
         <div className="category p-5">
+        <h3>Top Categories</h3>
           <Grid container spacing={2} lg={12}>
-            {/* col1 */}
-            <Grid item lg="3">
-              <div className="flex flex-col gap-4">
-                <div className="flex relative">
+            {category.map((item, key) => (
+              <Grid item lg="2" key={key}>
+                <div className="relative h-28 group overflow-hidden cursor-pointer">
                   <img
-                    src={require("../assets/images/category/img1.webp")}
-                    alt="workiee-category1"
+                    src={item.image}
+                    alt=""
+                    className="h-full object-top transition-all duration-500 ease-in-out group-hover:scale-110"
                   />
                   <button
-                    className="absolute top-2/4 left-2/4 w-28 h-12 bg-white/80 rounded-md font-medium hover:bg-violet-500/80 transition-all duration-500 hover:text-white"
+                    className="absolute top-2/4 left-2/4 w-28 h-12 bg-white/80 rounded-md font-medium group-hover:bg-violet-500/80 transition-all duration-500 ease-in-out group-hover:text-white"
                     style={{ transform: "translate(-50%, -50%)" }}
                   >
-                    SALE
+                    {item.name}
                   </button>
                 </div>
-                <div className="relative">
-                  <img
-                    src={require("../assets/images/category/img5.webp")}
-                    alt="workiee-category5"
-                  />
-                  <button
-                    className="absolute top-2/4 left-2/4 w-28 h-12 bg-white/80 rounded-md font-medium hover:bg-violet-500/80 transition-all duration-500 hover:text-white"
-                    style={{ transform: "translate(-50%, -50%)" }}
-                  >
-                    NEW
-                  </button>
-                </div>
-              </div>
-            </Grid>
-            {/* col2 */}
-            <Grid item lg="3">
-              <div className="relative">
-                <img
-                  src={require("../assets/images/category/img2.webp")}
-                  alt="workiee-category2"
-                  className="row-span-2"
-                />
-                <button
-                  className="absolute top-2/4 left-2/4 w-28 h-12 bg-white/80 rounded-md font-medium hover:bg-pri/80 transition-all duration-500 hover:text-white"
-                  style={{ transform: "translate(-50%, -50%)" }}
-                  onClick={onMoveToProduct}
-                >
-                  WOMEN
-                </button>
-              </div>
-            </Grid>
-            {/* col3 */}
-            <Grid item lg="6">
-              <div className="flex flex-col gap-4">
-                <div className="flex gap-4">
-                  <div className="relative">
-                    <img
-                      src={require("../assets/images/category/img3.webp")}
-                      alt="workiee-category3"
-                    />
-                    <button
-                      className="absolute top-2/4 left-2/4 w-28 h-12 bg-white/80 rounded-md font-medium hover:bg-pri/80 transition-all duration-500 hover:text-white"
-                      style={{ transform: "translate(-50%, -50%)" }}
-                    >
-                      MEN
-                    </button>
-                  </div>
-                  <div className="relative">
-                    <img
-                      src={require("../assets/images/category/img4.webp")}
-                      alt="workiee-category4"
-                    />
-                    <button
-                      className="absolute top-2/4 left-2/4 w-40 h-12 bg-white/80 rounded-md font-medium hover:bg-pri/80 transition-all duration-500 hover:text-white"
-                      style={{ transform: "translate(-50%, -50%)" }}
-                    >
-                      ACCESSORIES
-                    </button>
-                  </div>
-                </div>
-                <div className="relative">
-                  <img
-                    src={require("../assets/images/category/img6.webp")}
-                    alt="workiee-category6"
-                  />
-                  <button
-                    className="absolute top-2/4 left-2/4 w-28 h-12 bg-white/80 rounded-md font-medium hover:bg-pri/80 transition-all duration-500 hover:text-white"
-                    style={{ transform: "translate(-50%, -50%)" }}
-                  >
-                    SHOES
-                  </button>
-                </div>
-              </div>
-            </Grid>
+              </Grid>
+            ))}
           </Grid>
+        </div>
+        {/* best seller */}
+        <div>
+          
         </div>
         {/* services */}
         <div className="mt-[52px]">

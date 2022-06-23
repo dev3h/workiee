@@ -51,11 +51,19 @@ export default function Products() {
   }, []);
   useEffect(() => {
     const getAllWomenProducts = async () => {
+      let url = new URL(window.location.href);
+      let productName = url.searchParams.get("name");
       const womenProducts = await getWomenProducts();
       setWomenProduct(womenProducts);
+      if(productName !== '') {
+        setWomenProduct(  womenProducts?.filter((product) => {
+          return product.name.toLowerCase().includes(productName.toLowerCase());
+        }
+        ));
+      } 
     };
     getAllWomenProducts();
-  }, []);
+  }, [window.location.href]);
   const navigate = useNavigate();
   const onMoveDetail = (item) => () => {
     navigate(`/detail/${item.id}`);

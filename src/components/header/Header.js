@@ -1,20 +1,41 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Container, Grid, Badge, Menu, MenuItem } from "@mui/material";
 import { CgSearch } from "react-icons/cg";
 import { HiOutlineShoppingBag, HiOutlineUser } from "react-icons/hi";
 import { BsSliders } from "react-icons/bs";
 import { BiLock, BiGitCompare } from "react-icons/bi";
-import { FaRegHeart } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { FaRegHeart, FaRegUserCircle } from "react-icons/fa";
+import { FiLogOut } from "react-icons/fi";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../reducers/authSlice";
 export default function Header() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation(); // once ready it returns the 'window.location' object
+  const [url, setUrl] = useState(null);
   const [show, setShow] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
+  const cart = useSelector((store) => store.productSlice.cart);
+  const account = useSelector((store) => store.authSlice.account);
   const onShowMenu = () => {
     setShow(!show);
   };
-  const cart = useSelector((store) => store.productSlice.cart);
+  const onHandlerAuth = () => {
+    account && dispatch(logout());
+    navigate("/login");
+  };
+  const onChangeSearch = (e) => {
+    setSearchValue(e.target.value);
+  };
+  const onSearch = () => {
+    searchValue && navigate(`/products/?name=${searchValue}`);
+  };
+  useEffect(() => {
+    setUrl(location.pathname);
+  }, [location]);
   return (
-    <div className="header h-14 flex items-center">
+    <div className="header h-14 flex items-center shadow-[0_0_8px_rgba(0,0,0,0.2)]">
       <Container maxWidth="lg">
         <Grid
           container
@@ -25,7 +46,7 @@ export default function Header() {
           className="h-12"
         >
           <Grid item lg={2}>
-            <Link to="/" className="w-24 h-5">
+            <Link to="/" className="inline-block w-24 h-full">
               <img
                 src={require("../../assets/images/Logo.webp")}
                 alt="logo"
@@ -34,7 +55,7 @@ export default function Header() {
             </Link>
           </Grid>
           <Grid item lg={6}>
-            <div className="flex justify-center items-center gap-6">
+            <div className="flex justify-start items-center gap-6">
               <Link to="/" className="uppercase text-pri">
                 home
               </Link>
@@ -78,10 +99,19 @@ export default function Header() {
           </Grid>
           <Grid item lg={4}>
             <div className="flex justify-end items-center gap-4">
-              <CgSearch
-                className="cursor-pointer transition-all duration-300 hover:text-pri text-lg"
-                title="search"
-              />
+              <div className="relative flex-grow">
+                <input
+                  onChange={onChangeSearch}
+                  type="text"
+                  className="inline-block w-full h-full pl-[5px] pr-[2px] border-b border-solid text-sm focus:outline-none"
+                  placeholder="Search"
+                />
+                <CgSearch
+                  onClick={onSearch}
+                  className="absolute top-1/2 right-2 -translate-y-1/2 cursor-pointer transition-all duration-300 hover:text-pri text-lg"
+                  title="search"
+                />
+              </div>
               <Link to={"/cart"}>
                 <Badge badgeContent={cart.length} color="primary">
                   <HiOutlineShoppingBag
@@ -91,25 +121,45 @@ export default function Header() {
                 </Badge>
               </Link>
               <div className="relative">
-                <HiOutlineUser
-                  className="cursor-pointer transition-all duration-300 hover:text-pri text-lg"
-                  title="My Account"
-                  onClick={onShowMenu}
-                />
+                {account ? (
+                  <FaRegUserCircle
+                    onClick={onShowMenu}
+                    className="cursor-pointer transition-all duration-300 hover:text-pri text-lg"
+                    title="My Account"
+                    // style={{border:account?'1px solid #ccc':'none', borderRadius:account?'50%':'none', background:account?'#2879fe':'none', color:account?'#e9e7e7':'#191919'}}
+                  />
+                ) : (
+                  <HiOutlineUser
+                    onClick={onShowMenu}
+                    className="cursor-pointer transition-all duration-300 hover:text-pri text-lg"
+                    title="My Account"
+                  />
+                )}
+
                 <div
-                  className="opacity-0 absolute z-10 right-0 top-6 w-[280px] h-[205.2px] py-[30px] pl-[39px] pr-5 bg-white shadow-[0_2px_5px_rgba(0,0,0,0.5)] transition-all duration-300"
-                  style={{ opacity: show ? "1" : "0" }}
+                  className="hidden absolute z-10 right-0 top-6 w-[280px] h-[205.2px] py-[30px] pl-[39px] pr-5 bg-white shadow-[0_2px_5px_rgba(0,0,0,0.5)] transition-all duration-300"
+                  style={{ display: show ? "block" : "none" }}
                 >
-                  <div>
-                    <Link to={"/login"} className="flex gap-1 h-[28.8px]">
-                      <BiLock />
-                      Sign In
-                    </Link>
-                  </div>
-                  <div className="flex gap-1 h-[28.8px]">
-                    <HiOutlineUser />
-                    Register
-                  </div>
+                  {account ? (
+                    <div className="flex gap-1 h-[28.8px]">
+                      <HiOutlineUser />
+                      Account
+                    </div>
+                  ) : (
+                    <div>
+                      <div>
+                        <Link to={"/login"} className="flex gap-1 h-[28.8px]">
+                          <BiLock />
+                          Sign In
+                        </Link>
+                      </div>
+                      <div className="flex gap-1 h-[28.8px]">
+                        <HiOutlineUser />
+                        Register
+                      </div>
+                    </div>
+                  )}
+
                   <div className="flex gap-1 h-[28.8px]">
                     <HiOutlineShoppingBag />
                     View Cart
@@ -119,8 +169,20 @@ export default function Header() {
                     Wishlist
                   </div>
                   <div className="flex gap-1 h-[28.8px]">
-                    <BiGitCompare />y Compare
+                    <BiGitCompare />
+                    Compare
                   </div>
+                  {account ? (
+                    <div
+                      onClick={onHandlerAuth}
+                      className="flex gap-1 h-[28.8px] cursor-pointer"
+                    >
+                      <FiLogOut />
+                      Logout
+                    </div>
+                  ) : (
+                    <div></div>
+                  )}
                 </div>
               </div>
 

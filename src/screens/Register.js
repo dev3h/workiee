@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Container, Breadcrumbs, Grid } from "@mui/material";
+import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
-import {createAccount} from "../reducers/authSlice";
-import { useDispatch } from "react-redux";
-
+import { createAccount } from "../reducers/authSlice";
 export default function Register() {
   const dispatch = useDispatch();
+  const [isViewPass, setIsViewPass] = useState(false);
   const formik = useFormik({
     initialValues: {
       first_name: "",
@@ -31,9 +32,13 @@ export default function Register() {
         .required("Required!"),
     }),
     onSubmit: (values) => {
+      alert("register success");
       dispatch(createAccount(values));
     },
   });
+  const onChangeViewPass = () => {
+    setIsViewPass(!isViewPass);
+  };
   return (
     <div className="wrapper">
       {/* header */}
@@ -141,15 +146,23 @@ export default function Register() {
                 >
                   Password<span>*</span>
                 </label>
-                <input
-                  type="password"
-                  name="password"
-                  value={formik.values.password}
-                  onChange={formik.handleChange}
-                  className="block w-full h-10 py-[2px] pl-[15px] pr-3 border border-solid border-whiteF7 rounded-md bg-whiteF7 transition-all duration-300 focus:border-pri focus: outline-none"
-                  id="password"
-                  placeholder="Enter Password"
-                />
+                <div className="relative">
+                  <input
+                    type={isViewPass ? "text" : "password"}
+                    name="password"
+                    value={formik.values.password}
+                    onChange={formik.handleChange}
+                    className="block w-full h-10 py-[2px] pl-[15px] pr-3 border border-solid border-whiteF7 rounded-md bg-whiteF7 transition-all duration-300 focus:border-pri focus: outline-none"
+                    id="password"
+                    placeholder="Enter Password"
+                  />
+                  <div
+                    onClick={onChangeViewPass}
+                    className="absolute top-1/2 right-3 -translate-y-1/2"
+                  >
+                    {isViewPass ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+                  </div>
+                </div>
                 {formik.errors.password && formik.touched.password && (
                   <span className="text-sm text-red-600">
                     {formik.errors.password}
@@ -164,15 +177,23 @@ export default function Register() {
                 >
                   Confirm Password<span>*</span>
                 </label>
-                <input
-                  type="password"
-                  name="confirm_password"
-                  value={formik.values.confirm_password}
-                  onChange={formik.handleChange}
-                  className="block w-full h-10 py-[2px] pl-[15px] pr-3 border border-solid border-whiteF7 rounded-md bg-whiteF7 transition-all duration-300 focus:border-pri focus: outline-none"
-                  id="cfmPassword"
-                  placeholder="Enter Confirm Password"
-                />
+                <div className="relative">
+                  <input
+                    type={isViewPass ? "text" : "password"}
+                    name="confirm_password"
+                    value={formik.values.confirm_password}
+                    onChange={formik.handleChange}
+                    className="block w-full h-10 py-[2px] pl-[15px] pr-3 border border-solid border-whiteF7 rounded-md bg-whiteF7 transition-all duration-300 focus:border-pri focus: outline-none"
+                    id="cfmPassword"
+                    placeholder="Enter Confirm Password"
+                  />
+                  <div
+                    onClick={onChangeViewPass}
+                    className="absolute top-1/2 right-3 -translate-y-1/2"
+                  >
+                    {isViewPass ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+                </div>  
+                </div>
                 {formik.errors.confirm_password &&
                   formik.touched.confirm_password && (
                     <span className="text-sm text-red-600">
