@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { Container, Breadcrumbs, Grid } from "@mui/material";
+import { Container, Breadcrumbs, Grid, Box, Tab } from "@mui/material";
+import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { BsHeadset } from "react-icons/bs";
 import { TbArrowBackUp } from "react-icons/tb";
@@ -13,6 +14,10 @@ import { addProduct } from "../reducers/productSlice";
 export default function Detail() {
   const params = useParams();
   const [productDetail, setProductDetail] = useState({});
+  const [value, setValue] = useState("1");
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
   useEffect(() => {
     const getDetail = async () => {
       const result = await getProductDetail(params.id);
@@ -131,10 +136,31 @@ export default function Detail() {
                 </div>
               </Grid>
             </Grid>
+            {/* tab */}
             <div>
-              <h2 className="font-medium text-3xl">Description</h2>
-              {productDetail?.description?.map((item) => (
-                <p className="text-sm">{item}</p>))}
+              <Box sx={{ width: "100%", typography: "body1" }}>
+                <TabContext value={value}>
+                  <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                    <TabList
+                      onChange={handleChange}
+                      aria-label="lab API tabs example"
+                    >
+                      <Tab label="DESCRIPTION" value="1" />
+                      <Tab label="GENERAL TAB" value="2" />
+                      <Tab label="REVIEWS" value="3" />
+                    </TabList>
+                  </Box>
+                  <TabPanel value="1" className="p-0">
+                    {" "}
+                    {productDetail?.description?.map((item) => (
+                      <p className="text-sm mt-4 text-grey777">{item}</p>
+                    ))}
+                  </TabPanel>
+                  <TabPanel value="2">Item Two</TabPanel>
+                  <TabPanel value="3">Item Three</TabPanel>
+                </TabContext>
+              </Box>
+             
             </div>
           </Container>
         </div>

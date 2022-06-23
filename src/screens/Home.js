@@ -9,7 +9,6 @@ import { FaShippingFast } from "react-icons/fa";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import { getCategories } from "../services/api";
-
 export default function Home() {
   const [category, setCategory] = useState([]);
   useEffect(() => {

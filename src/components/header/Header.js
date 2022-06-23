@@ -102,6 +102,11 @@ export default function Header() {
               <div className="relative flex-grow">
                 <input
                   onChange={onChangeSearch}
+                  onKeyPress={(e) => {
+                    if (e.key === "Enter") {
+                      onSearch();
+                    }
+                  }}
                   type="text"
                   className="inline-block w-full h-full pl-[5px] pr-[2px] border-b border-solid text-sm focus:outline-none"
                   placeholder="Search"
