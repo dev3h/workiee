@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import { Container, Grid, Badge, Menu, MenuItem } from "@mui/material";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Container, Grid, Badge } from "@mui/material";
 import { CgSearch } from "react-icons/cg";
 import { HiOutlineShoppingBag, HiOutlineUser } from "react-icons/hi";
 import { BsSliders } from "react-icons/bs";
@@ -12,8 +12,6 @@ import { logout } from "../../reducers/authSlice";
 export default function Header() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation(); // once ready it returns the 'window.location' object
-  const [url, setUrl] = useState(null);
   const [show, setShow] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const cart = useSelector((store) => store.productSlice.cart);
@@ -31,9 +29,6 @@ export default function Header() {
   const onSearch = () => {
     searchValue && navigate(`/products/?name=${searchValue}`);
   };
-  useEffect(() => {
-    setUrl(location.pathname);
-  }, [location]);
   return (
     <div className="header h-14 flex items-center shadow-[0_0_8px_rgba(0,0,0,0.2)]">
       <Container maxWidth="lg">

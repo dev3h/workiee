@@ -12,12 +12,24 @@ import Footer from "../components/footer/Footer";
 import { getProductDetail } from "../services/api";
 import { addProduct } from "../reducers/productSlice";
 export default function Detail() {
+  const dispatch = useDispatch();
   const params = useParams();
   const [productDetail, setProductDetail] = useState({});
   const [value, setValue] = useState("1");
+  const [checkTerm, setCheckTerm] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+  const isCheckTerm = () => {
+    setCheckTerm(!checkTerm);
+  };
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  const addToCart = (item) => () => {
+    dispatch(addProduct(item));
+  };
+  function logit() {
+    setScrollY(window.pageYOffset);
+  }
   useEffect(() => {
     const getDetail = async () => {
       const result = await getProductDetail(params.id);
@@ -25,10 +37,16 @@ export default function Detail() {
     };
     getDetail();
   }, []);
-  const dispatch = useDispatch();
-  const addToCart = (item) => () => {
-    dispatch(addProduct(item));
-  };
+  useEffect(() => {
+    function watchScroll() {
+      window.addEventListener("scroll", logit);
+    }
+    watchScroll();
+    // Remove listener (like componentWillUnmount)
+    return () => {
+      window.removeEventListener("scroll", logit);
+    };
+  }, []);
   return (
     <div className="wrapper">
       {/* header */}
@@ -47,7 +65,7 @@ export default function Detail() {
                 Home
               </Link>
               <Link
-                to={"/"}
+                to={"/products"}
                 className="transition-all duration-500 hover:text-pri"
               >
                 Women
@@ -70,12 +88,19 @@ export default function Detail() {
                   </Grid>
                   <Grid item lg={6}>
                     <div>
+                      <span>
+                        Sku:{" "}
+                        <span className="text-grey999">
+                          {productDetail.sku}
+                        </span>
+                      </span>
                       <h1 className="font-medium text-3xl">
                         {productDetail.name}
                       </h1>
                       <div className="font-medium text-3xl text-pri">
                         ${productDetail.price}
                       </div>
+                      <div className="mb-[21px]">Tax included.</div>
                       <div>{productDetail.star}</div>
                       <div className="flex justify-between items-center mt-[33px] h-[50px]">
                         {/* <div className="flex h-full bg-whiteF7">
@@ -93,11 +118,63 @@ export default function Detail() {
                         </div> */}
                         <button
                           onClick={addToCart(productDetail)}
-                          className="px-4 py-[9px] bg-pri text-white flex items-center justify-center h-full gap-[5px] rounded-md w-60"
+                          className="px-4 py-[9px] bg-pri text-white flex items-center justify-center h-full gap-[5px] rounded-md w-60 transition-all duration-300 ease-in-out hover:bg-[#2267d8]"
                         >
                           <HiOutlineShoppingBag />
                           <span>ADD TO CART</span>
                         </button>
+                      </div>
+                      <div className="mt-[21px]">
+                        <label
+                          htmlFor="term"
+                          className="flex gap-1 items-center"
+                        >
+                          <input
+                            onClick={isCheckTerm}
+                            type="checkbox"
+                            id="term"
+                          />
+                          I agree with the terms and conditions
+                        </label>
+                      </div>
+                      <button
+                        className="block w-full mt-5 py-[19px] px-[7px] rounded-md bg-[#f8dc68] font-medium text-sm transition-all duration-300 ease-in-out  hover:bg-[#dfc65d]"
+                        style={{
+                          pointerEvents: checkTerm ? "auto" : "none",
+                          opacity: checkTerm ? "1" : "0.5",
+                        }}
+                      >
+                        BUY IT NOW
+                      </button>
+                      <div className="mt-[33px]">
+                        <ul>
+                          <li className="h-[22px]">
+                            Vendor:{" "}
+                            <span className="text-grey999">
+                              {productDetail.band}
+                            </span>{" "}
+                          </li>
+                          <li className="h-[22px] mt-[6px]">
+                            Product Type:{" "}
+                            <span className="text-grey999">
+                              {productDetail.type}
+                            </span>
+                          </li>
+                          <li className="h-[22px]  mt-[6px]">
+                            Barcode:{" "}
+                            <span className="text-grey999">
+                              {productDetail.code}
+                            </span>
+                          </li>
+                          <li className="h-[22px]  mt-[6px]">
+                            Tags:{" "}
+                            {productDetail?.tags?.map((item, key) => (
+                              <span key={key} className="mr-1">
+                                {item.name}
+                              </span>
+                            ))}
+                          </li>
+                        </ul>
                       </div>
                     </div>
                   </Grid>
@@ -150,17 +227,53 @@ export default function Detail() {
                       <Tab label="REVIEWS" value="3" />
                     </TabList>
                   </Box>
-                  <TabPanel value="1" className="p-0">
+                  <TabPanel value="1" className="p-4">
                     {" "}
-                    {productDetail?.description?.map((item) => (
-                      <p className="text-sm mt-4 text-grey777">{item}</p>
+                    {productDetail?.description?.map((item, key) => (
+                      <p key={key} className="text-sm mt-4 text-grey777">
+                        {item}
+                      </p>
                     ))}
                   </TabPanel>
-                  <TabPanel value="2">Item Two</TabPanel>
-                  <TabPanel value="3">Item Three</TabPanel>
+                  <TabPanel value="2" className="p-4">
+                    <table className="text-sm font-normal">
+                      <tbody>
+                        <tr className="h-10">
+                          <td className="w-2/5">Color:</td>
+                          <td className="text-grey777">
+                            <div className="flex gap-2">
+                              {productDetail?.general?.colors?.map(
+                                (item, key) => (
+                                  <span key={key}>{item}</span>
+                                )
+                              )}
+                            </div>
+                          </td>
+                        </tr>
+                        <tr className="h-10">
+                          <td>Size:</td>
+                          <td className="text-grey777">
+                            <div className="flex gap-2">
+                              {productDetail?.general?.sizes?.map(
+                                (item, key) => (
+                                  <span key={key}>{item}</span>
+                                )
+                              )}
+                            </div>
+                          </td>
+                        </tr>
+                        <tr className="h-10">
+                          <td>Material:</td>
+                          <td className="text-grey777">
+                            {productDetail?.general?.material}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </TabPanel>
+                  <TabPanel value="3">No review yet</TabPanel>
                 </TabContext>
               </Box>
-             
             </div>
           </Container>
         </div>

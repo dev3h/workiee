@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         pri: "#2879fe",
         grey888: "#888",
+        grey999: "#999",
         grey777: "#777",
         black30: "#303030",
         black19: "#191919",

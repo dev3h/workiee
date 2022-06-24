@@ -132,12 +132,13 @@ export const womenColors = [
 export const womenProducts = [
   {
     id: 1,
+    sku: 462,
+    availability: " 12 in stock",
     band: "ZARA",
     price: 400,
     image: require("../assets/images/womenProducts/img1.webp"),
     name: "Tailored Fit Mesh-Panel Polo",
     type: "Polo",
-    color: "beige",
     star: "⭐⭐⭐⭐⭐",
     code: "123456789",
     tags: [
@@ -149,6 +150,18 @@ export const womenProducts = [
         name: "Winter",
         link: "/winter",
       },
+      {
+        name: "Short",
+        link: "/short",
+      },
+      {
+        name: "Cool",
+        link: "/cool",
+      },
+      {
+        name: "Nice",
+        link: "/nice",
+      },
     ],
     description: [
       "We are proud to present our best premium Shopify theme - Wokiee.",
@@ -157,35 +170,312 @@ export const womenProducts = [
       "You can buy our theme and start your business online with minimal time investments.",
       "Wokiee support DropShipping app Oberlo. Wokiee Shopify theme is powerfool tool to create personal webshop.",
     ],
+    general: {
+      colors: ["Blue", "Green"],
+      sizes: [20, 24],
+      material: "100% Polyester",
+    },
   },
   {
     id: 2,
+    sku: 445,
+    availability: "Many in stock",
     band: "GAP",
     price: 380.0,
     image: require("../assets/images/womenProducts/img2.webp"),
     name: "Premier Cropped Skinny Jean",
     type: "Jeans",
-    color: "blue",
     star: "⭐⭐⭐⭐⭐",
+    code: "123456789",
+    tags: [
+      {
+        name: "Sunglasses",
+        link: "/sunglasses",
+      },
+      {
+        name: "Winter",
+        link: "/winter",
+      },
+      {
+        name: "Short",
+        link: "/short",
+      },
+      {
+        name: "Cool",
+        link: "/cool",
+      },
+      {
+        name: "Nice",
+        link: "/nice",
+      },
+    ],
+    description: [
+      "We are proud to present our best premium Shopify theme - Wokiee.",
+      "This is multi-purpose software that can be used for any type of the store. Great variety of available options will make customization process very easy.",
+      "Please, take a look at feature list and compare with our competitors.",
+      "You can buy our theme and start your business online with minimal time investments.",
+      "Wokiee support DropShipping app Oberlo. Wokiee Shopify theme is powerfool tool to create personal webshop.",
+    ],
+    general: {
+      colors: ["Blue", "Light BLue", "Green", "Pink", "Orange"],
+      sizes: [20, 24],
+      material: "100% Polyester",
+    },
   },
   {
     id: 3,
+    sku: 493,
+    availability: "Many in stock",
     band: "GUESS",
     price: 480.0,
     image: require("../assets/images/womenProducts/img3.webp"),
     name: "Relaxed-Fit Cotton Shirt",
     type: "Shirt",
-    color: "beige",
     star: "⭐⭐⭐⭐⭐",
+    code: "123456789",
+    tags: [
+      {
+        name: "Vintage",
+        link: "/vintage",
+      },
+      {
+        name: "Awesome",
+        link: "/awesome",
+      },
+      {
+        name: "Summer",
+        link: "/summer",
+      },
+      {
+        name: "Beachwear",
+        link: "/beachwear",
+      },
+    ],
+    description: [
+      "We are proud to present our best premium Shopify theme - Wokiee.",
+      "This is multi-purpose software that can be used for any type of the store. Great variety of available options will make customization process very easy.",
+      "Please, take a look at feature list and compare with our competitors.",
+      "You can buy our theme and start your business online with minimal time investments.",
+      "Wokiee support DropShipping app Oberlo. Wokiee Shopify theme is powerfool tool to create personal webshop.",
+    ],
+    general: {
+      colors: ["Grey", "Green"],
+      sizes: [20, 24],
+      material: "100% Polyester",
+    },
   },
   {
     id: 4,
+    sku: 481,
+    availability: "You can purchase this product but it's out of stock",
     band: "LACOSTE",
     price: 440.0,
     image: require("../assets/images/womenProducts/img4.webp"),
     name: "Viscose-Cashmere Scarf",
     type: "Scarf",
-    color: "beige",
     star: "⭐⭐⭐⭐⭐",
+    code: "123456789",
+    tags: [
+      {
+        name: "Vintage",
+        link: "/vintage",
+      },
+      {
+        name: "Awesome",
+        link: "/awesome",
+      },
+      {
+        name: "Summer",
+        link: "/summer",
+      },
+      {
+        name: "Beachwear",
+        link: "/beachwear",
+      },
+    ],
+    description: [
+      "We are proud to present our best premium Shopify theme - Wokiee.",
+      "This is multi-purpose software that can be used for any type of the store. Great variety of available options will make customization process very easy.",
+      "Please, take a look at feature list and compare with our competitors.",
+      "You can buy our theme and start your business online with minimal time investments.",
+      "Wokiee support DropShipping app Oberlo. Wokiee Shopify theme is powerfool tool to create personal webshop.",
+    ],
+    general: {
+      colors: ["Light Blue", "Blue", "Black"],
+      sizes: [20, 24],
+      material: "100% Polyester",
+    },
+  },
+  {
+    id: 5,
+    sku: 501,
+    availability: "Many in stock",
+    band: "Levi's",
+    price: 500.0,
+    image: require("../assets/images/womenProducts/img5.webp"),
+    name: "Slim Fit Cotton Oxford Shirt",
+    type: " Shirt",
+    star: "⭐⭐⭐⭐⭐",
+    code: "123456789",
+    tags: [
+      {
+        name: "Vintage",
+        link: "/vintage",
+      },
+      {
+        name: "Awesome",
+        link: "/awesome",
+      },
+      {
+        name: "Summer",
+        link: "/summer",
+      },
+      {
+        name: "Beachwear",
+        link: "/beachwear",
+      },
+    ],
+    description: [
+      "We are proud to present our best premium Shopify theme - Wokiee.",
+      "This is multi-purpose software that can be used for any type of the store. Great variety of available options will make customization process very easy.",
+      "Please, take a look at feature list and compare with our competitors.",
+      "You can buy our theme and start your business online with minimal time investments.",
+      "Wokiee support DropShipping app Oberlo. Wokiee Shopify theme is powerfool tool to create personal webshop.",
+    ],
+    general: {
+      colors: ["Light Blue", "Pink"],
+      sizes: [20, 24],
+      material: "100% Polyester",
+    },
+  },
+  {
+    id: 6,
+    sku: 34,
+    availability: "Many in stock",
+    band: "Polo",
+    price: 180.0,
+    image: require("../assets/images/womenProducts/img6.webp"),
+    name: "Rounded Cat Eye Sunglasses",
+    type: "Sunglasses",
+    star: "⭐⭐⭐⭐⭐",
+    code: "123456789",
+    tags: [
+      {
+        name: "Vintage",
+        link: "/vintage",
+      },
+      {
+        name: "Awesome",
+        link: "/awesome",
+      },
+      {
+        name: "Summer",
+        link: "/summer",
+      },
+      {
+        name: "Beachwear",
+        link: "/beachwear",
+      },
+    ],
+    description: [
+      "We are proud to present our best premium Shopify theme - Wokiee.",
+      "This is multi-purpose software that can be used for any type of the store. Great variety of available options will make customization process very easy.",
+      "Please, take a look at feature list and compare with our competitors.",
+      "You can buy our theme and start your business online with minimal time investments.",
+      "Wokiee support DropShipping app Oberlo. Wokiee Shopify theme is powerfool tool to create personal webshop.",
+    ],
+    general: {
+      colors: ["Blue", "Purple", "Pink"],
+      sizes: [20, 24],
+      material: "100% Polyester",
+    },
+  },
+  {
+    id: 7,
+    sku: 27,
+    availability: "Many in stock",
+    band: "Zara",
+    price: 40.00,
+    image: require("../assets/images/womenProducts/img7.webp"),
+    name: "Paint-Splatter Fleece Pullover",
+    type: "Pullover",
+    star: "⭐⭐⭐⭐⭐",
+    code: "123456789",
+    tags: [
+      {
+        name: "Vintage",
+        link: "/vintage",
+      },
+      {
+        name: "Awesome",
+        link: "/awesome",
+      },
+      {
+        name: "Summer",
+        link: "/summer",
+      },
+      {
+        name: "Beachwear",
+        link: "/beachwear",
+      },
+    ],
+    description: [
+      "We are proud to present our best premium Shopify theme - Wokiee.",
+      "This is multi-purpose software that can be used for any type of the store. Great variety of available options will make customization process very easy.",
+      "Please, take a look at feature list and compare with our competitors.",
+      "You can buy our theme and start your business online with minimal time investments.",
+      "Wokiee support DropShipping app Oberlo. Wokiee Shopify theme is powerfool tool to create personal webshop.",
+    ],
+    general: {
+      colors: ["Blue", "Purple", "Pink"],
+      sizes: [20, 24],
+      material: "100% Polyester",
+    },
+  },
+  {
+    id: 8,
+    sku: 43,
+    availability: "Many in stock",
+    band: "Levi's",
+    price: 360.00,
+    image: require("../assets/images/womenProducts/img8.webp"),
+    name: "Woven Shield Sunglasses",
+    type: "Sunglasses",
+    star: "⭐⭐⭐⭐⭐",
+    code: "123456789",
+    tags: [
+      {
+        name: "Sunglasses",
+        link: "/sunglasses",
+      },
+      {
+        name: "Winter",
+        link: "/winter",
+      },
+      {
+        name: "Shorts",
+        link: "/shorts",
+      },
+      {
+        name: "Cool",
+        link: "/cool",
+      },
+      {
+        name: "Nice",
+        link: "/nice",
+      },
+    ],
+    description: [
+      "We are proud to present our best premium Shopify theme - Wokiee.",
+      "This is multi-purpose software that can be used for any type of the store. Great variety of available options will make customization process very easy.",
+      "Please, take a look at feature list and compare with our competitors.",
+      "You can buy our theme and start your business online with minimal time investments.",
+      "Wokiee support DropShipping app Oberlo. Wokiee Shopify theme is powerfool tool to create personal webshop.",
+    ],
+    general: {
+      colors: ["Blue", "Purple", "Pink"],
+      sizes: [20, 24],
+      material: "100% Polyester",
+    },
   },
 ];
