@@ -30,8 +30,8 @@ export default function Header() {
     searchValue && navigate(`/products/?name=${searchValue}`);
   };
   return (
-    <div className="header h-14 flex items-center shadow-[0_0_8px_rgba(0,0,0,0.2)]">
-      <Container maxWidth="lg">
+    <div className="header w-full h-14 flex items-center shadow-[0_0_8px_rgba(0,0,0,0.2)]">
+      <Container fixed>
         <Grid
           container
           spacing={2}
@@ -50,7 +50,7 @@ export default function Header() {
             </Link>
           </Grid>
           <Grid item lg={6}>
-            <div className="flex justify-start items-center gap-6">
+            <div className="flex justify-start items-center gap-6 sm:hidden md:hidden lg:flex">
               <Link to="/" className="uppercase text-pri">
                 home
               </Link>
@@ -135,9 +135,8 @@ export default function Header() {
                     title="My Account"
                   />
                 )}
-
                 <div
-                  className="hidden absolute z-10 right-0 top-6 w-[280px] h-[205.2px] py-[30px] pl-[39px] pr-5 bg-white shadow-[0_2px_5px_rgba(0,0,0,0.5)] transition-all duration-300"
+                  className="absolute z-10 -right-4 top-6 w-[280px] h-[205.2px] py-[30px] pl-[39px] pr-5 bg-white shadow-[0_2px_5px_rgba(0,0,0,0.5)] transition-all duration-300"
                   style={{ display: show ? "block" : "none" }}
                 >
                   {account ? (

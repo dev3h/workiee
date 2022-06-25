@@ -1,29 +1,36 @@
-import React from "react";
-import 'react-toastify/dist/ReactToastify.css';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "../src/screens/Home";
-import Products from "../src/screens/Products";
-import Detail from "../src/screens/Detail";
-import Cart from "../src/screens/Cart";
-import Login from "./screens/Login";
-import Register from "./screens/Register";
-// import WishList from "../src/screens/WishList";
+import React, { useState, useEffect } from "react";
 import { ToastContainer } from "react-toastify";
-export default function AppContainer() {
-  return (
-    <BrowserRouter>
-      <ToastContainer />
-      {/* declare routers */}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/detail/:id" element={<Detail />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+import AnimateRouters from "./screens/AnimateRouters";
+import "react-toastify/dist/ReactToastify.css";
+import { BrowserRouter } from "react-router-dom";
+import { ClimbingBoxLoader } from "react-spinners";
 
-        {/* <Route path="/wishlist" element={<WishList />} /> */}
-      </Routes>
-    </BrowserRouter>
+// import WishList from "../src/screens/WishList";
+export default function AppContainer() {
+  const [loadingPage, setLoadingPage] = useState(false);
+  useEffect(() => {
+    setLoadingPage(true);
+    setTimeout(() => {
+      setLoadingPage(false);
+    }, 5000);
+  }, []);
+  return (
+    <div>
+      {loadingPage ? (
+        <div className="w-full min-h-screen flex justify-center items-center bg-slate-800">
+          <ClimbingBoxLoader
+            color={"#f37a24"}
+            loading={loadingPage}
+            size={30}
+          />
+        </div>
+      ) : (
+        <BrowserRouter>
+          <ToastContainer />
+          {/* declare routers */}
+          <AnimateRouters />
+        </BrowserRouter>
+      )}
+    </div>
   );
 }

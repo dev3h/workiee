@@ -12,17 +12,17 @@ export default function Footer() {
   return (
     <div className="footer h-auto pb-14 mt-[60px]">
       {/* footer top */}
-      <div className="bg-pri h-16">
-        <Container maxWidth="lg" className="h-full">
-          <div className="flex justify-between items-center h-full">
-            <h4 className="uppercase text-white">be in touch with us:</h4>
-            <div className="form-group bg-white flex items-center rounded-md">
+      <div className="bg-pri h-16 sm:h-auto md:h-16 lg:h-16">
+        <Container className="h-full">
+          <div className="flex justify-between items-center sm:flex-col md:flex-row lg:flex-row h-full">
+            <h4 className=" uppercase text-white">be in touch with us:</h4>
+            <div className="form-group relative h-10 sm:w-full md:w-auto lg:w-auto bg-white flex items-center rounded-md">
               <input
                 type="email"
                 placeholder="Enter your e-mail"
-                className="pt-1 pr-3 pb-px pl-4 w-96 h-10 rounded-tl-md rounded-bl-md focus:outline-none"
+                className="block h-full pt-1 pr-3 pb-px pl-4 w-96 rounded-md rounded-bl-md focus:outline-none"
               />
-              <button className="transition-all duration-300 uppercase bg-black30 p-4 px-5 rounded-tr-md rounded-br-md text-white hover:bg-black">
+              <button className="absolute right-0 flex justify-center items-center h-full transition-all duration-300 uppercase bg-black30 p-4 px-5 rounded-tr-md rounded-br-md text-white hover:bg-black">
                 join us
               </button>
             </div>
@@ -62,8 +62,8 @@ export default function Footer() {
         </Container>
       </div>
       {/* footer bottom */}
-      <div className="bg-whiteF7 mt-4 h-auto">
-        <Container maxWidth="lg" className="h-auto">
+      <div className="bg-whiteF7 mt-4 h-auto sm:text-center md:text-center lg:text-left">
+        <Container className="h-auto">
           <Grid
             container
             spacing={2}
@@ -72,7 +72,7 @@ export default function Footer() {
             className="h-auto py-14"
           >
             {/* col 1 */}
-            <Grid item lg={3}>
+            <Grid item sm={6} md={6} lg={3}>
               <h4 className="font-medium leading-6 pb-4">
                 CATEGORIES
               </h4>
@@ -98,7 +98,7 @@ export default function Footer() {
               </ul>
             </Grid>
             {/* col 2 */}
-            <Grid item lg={3}>
+            <Grid item sm={6} md={6} lg={3}>
               <h4 className="font-medium leading-6 pb-4 ">
                 BUY WITH US
               </h4>
@@ -127,7 +127,7 @@ export default function Footer() {
               </ul>
             </Grid>
             {/* col 3 */}
-            <Grid item lg={3}>
+            <Grid item sm={6} md={6} lg={3}>
               <h4 className="font-medium leading-6 pb-4 ">
                 ABOUT
               </h4>
@@ -139,7 +139,7 @@ export default function Footer() {
               </div>
             </Grid>
             {/* col 4 */}
-            <Grid item lg={3}>
+            <Grid item sm={6} md={6} lg={3}>
               <h4 className="font-medium leading-6 pb-4 ">
                 CONTACT US
               </h4>
