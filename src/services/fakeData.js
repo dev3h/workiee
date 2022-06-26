@@ -1,3 +1,35 @@
+export const blogs = [
+  {
+    image: require("../assets/images/blog/img1.webp"),
+    tag: "LADIES",
+    title: "Catalogue Mode",
+    description:
+      "It is a long established fact that by the readable content of a page when looking at its layout.",
+    author: "Diego Lopez",
+    date: "June 21, 2018",
+    comment: 25,
+  },
+  {
+    image: require("../assets/images/blog/img2.webp"),
+    tag: "WOKIEE",
+    title: "COUNTDOWN TIMEZONE",
+    description:
+      "It is a long established fact that by the readable content of a page when looking at its layout.",
+    author: "Diego Lopez",
+    date: "June 21, 2018",
+    comment: 17,
+  },
+  {
+    image: require("../assets/images/blog/img3.webp"),
+    tag: "PROMO",
+    title: "PURCHASED PROMO SECTION",
+    description:
+      "It is a long established fact that by the readable content of a page when looking at its layout.",
+    author: "Diego Lopez",
+    date: "June 21, 2018",
+    comment: 10,
+  },
+];
 export const categories = [
   {
     name: "SALE",
@@ -395,7 +427,7 @@ export const womenProducts = [
     sku: 27,
     availability: "Many in stock",
     band: "Zara",
-    price: 40.00,
+    price: 40.0,
     image: require("../assets/images/womenProducts/img7.webp"),
     name: "Paint-Splatter Fleece Pullover",
     type: "Pullover",
@@ -437,7 +469,7 @@ export const womenProducts = [
     sku: 43,
     availability: "Many in stock",
     band: "Levi's",
-    price: 360.00,
+    price: 360.0,
     image: require("../assets/images/womenProducts/img8.webp"),
     name: "Woven Shield Sunglasses",
     type: "Sunglasses",

@@ -4,19 +4,20 @@ import { useDispatch } from "react-redux";
 import { motion } from "framer-motion";
 import Slider from "react-slick";
 import { Container, Grid } from "@mui/material";
-import { BsHeadset } from "react-icons/bs";
+import { BsHeadset, BsChat } from "react-icons/bs";
 import { TbArrowBackUp } from "react-icons/tb";
 import { FaShippingFast } from "react-icons/fa";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
-import { getCategories, getWomenProducts } from "../services/api";
+import { getCategories, getWomenProducts, getBlogs } from "../services/api";
 import { addProduct } from "../reducers/productSlice";
 export default function Home() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [category, setCategory] = useState([]);
   const [womenProduct, setWomenProduct] = useState([]);
+  const [blog, setBlog] = useState([]);
   const onMoveDetail = (item) => () => {
     navigate(`/detail/${item.id}`);
   };
@@ -39,6 +40,13 @@ export default function Home() {
       setWomenProduct(womenProducts);
     };
     getAllWomenProducts();
+  }, []);
+  useEffect(() => {
+    const getAllBlog = async () => {
+      const blogs = await getBlogs();
+      setBlog(blogs);
+    };
+    getAllBlog();
   }, []);
   function SampleNextArrow(props) {
     const { className, style } = props;
@@ -95,92 +103,92 @@ export default function Home() {
       </div>
       <div className="home-main mt-8">
         {/* hero carousel */}
-          <div className="carousel h-full px-[17px] sm:hidden md:hidden lg:block">
-            <Grid container spacing={2} lg={12} className="justify-between">
-              <Grid item lg="8" md="12">
-                <div className="h-full">
-                  <Slider {...settings} className="h-full">
-                    <div className="relative h-full">
-                      <img
-                        className="relative rounded-md h-full"
-                        src={require("../assets/images/hero/img1.webp")}
-                        alt=""
-                      />
-                      <div className="absolute top-[30%] left-[10%] z-20 text-white  sm:hidden md:hidden lg:block">
-                        <div>WOKIEE</div>
-                        <div className="text-4xl font-medium my-5">
-                          1st Ecommerce Theme <br />
-                          Recommended by EnvatoTuts+
-                        </div>
-                        <div
-                          onClick={onMoveToProduct}
-                          className="flex justify-center items-center w-fit h-[50px] rounded-md py-[6px] px-[27px] bg-[#2879fe] hover:bg-[#2267d8] cursor-pointer transition-all duration-300"
-                        >
-                          DISCOVER NOW
-                        </div>
+        <div className="carousel h-full px-[17px] sm:hidden md:hidden lg:block">
+          <Grid container spacing={2} lg={12} className="justify-between">
+            <Grid item lg="8" md="12">
+              <div className="h-full">
+                <Slider {...settings} className="h-full">
+                  <div className="relative h-full">
+                    <img
+                      className="relative rounded-md h-full"
+                      src={require("../assets/images/hero/img1.webp")}
+                      alt=""
+                    />
+                    <div className="absolute top-[30%] left-[10%] z-20 text-white  sm:hidden md:hidden lg:block">
+                      <div>WOKIEE</div>
+                      <div className="text-4xl font-medium my-5">
+                        1st Ecommerce Theme <br />
+                        Recommended by EnvatoTuts+
+                      </div>
+                      <div
+                        onClick={onMoveToProduct}
+                        className="flex justify-center items-center w-fit h-[50px] rounded-md py-[6px] px-[27px] bg-[#2879fe] hover:bg-[#2267d8] cursor-pointer transition-all duration-300"
+                      >
+                        DISCOVER NOW
                       </div>
                     </div>
-                    <div className="relative">
-                      <img
-                        className="rounded-md"
-                        src={require("../assets/images/hero/img2.webp")}
-                        alt=""
-                      />
-                      <div className="absolute top-[30%] left-[10%] z-20 text-white">
-                        <div className="text-pri">WOKIEE</div>
-                        <div className="text-4xl font-medium my-5 text-black19">
-                          Optimised <br />
-                          for Dropshipping
-                        </div>
-                        <div
-                          onClick={onMoveToProduct}
-                          className="flex justify-center items-center w-fit h-[50px] rounded-md py-[6px] px-[27px] bg-[#2879fe] hover:bg-[#2267d8] cursor-pointer transition-all duration-300"
-                        >
-                          DISCOVER NOW
-                        </div>
-                      </div>
-                    </div>
-                    <div className="relative">
-                      <img
-                        className="rounded-md"
-                        src={require("../assets/images/hero/img3.webp")}
-                        alt=""
-                      />
-                      <div className="absolute top-[30%] left-[10%] z-20 text-white">
-                        <div className="text-pri">WOKIEE</div>
-                        <div className="text-4xl font-medium my-5 text-black19">
-                          Premium Customer <br />
-                          Support Service
-                        </div>
-                        <div
-                          onClick={onMoveToProduct}
-                          className="flex justify-center items-center w-fit h-[50px] rounded-md py-[6px] px-[27px] bg-[#2879fe] hover:bg-[#2267d8] cursor-pointer transition-all duration-300"
-                        >
-                          DISCOVER NOW
-                        </div>
-                      </div>
-                    </div>
-                  </Slider>
-                </div>
-              </Grid>
-              <Grid item lg="4" md="12" className="md:hidden lg:block">
-                <div className="group h-[482.56px] relative cursor-pointer md:hidden lg:block">
-                  <img
-                    className="relative rounded-md h-full group"
-                    src={require("../assets/images/hero/img4.webp")}
-                    alt=""
-                  />
-                  <div
-                    onClick={onMoveToProduct}
-                    className="absolute bottom-8 left-2/4 -translate-x-2/4 flex flex-col gap-2 justify-center items-center w-[223.16px] h-[114px] bg-white/90 rounded-md text-center font-medium transition-all duration-500 ease-in-out group-hover:scale-110 group-hover:bg-pri/80 group-hover:text-white"
-                  >
-                    <div>TOP VIEW IN THIS WEEK</div>
-                    <div className="text-[26px]">TRENDING</div>
                   </div>
-                </div>
-              </Grid>
+                  <div className="relative">
+                    <img
+                      className="rounded-md"
+                      src={require("../assets/images/hero/img2.webp")}
+                      alt=""
+                    />
+                    <div className="absolute top-[30%] left-[10%] z-20 text-white">
+                      <div className="text-pri">WOKIEE</div>
+                      <div className="text-4xl font-medium my-5 text-black19">
+                        Optimised <br />
+                        for Dropshipping
+                      </div>
+                      <div
+                        onClick={onMoveToProduct}
+                        className="flex justify-center items-center w-fit h-[50px] rounded-md py-[6px] px-[27px] bg-[#2879fe] hover:bg-[#2267d8] cursor-pointer transition-all duration-300"
+                      >
+                        DISCOVER NOW
+                      </div>
+                    </div>
+                  </div>
+                  <div className="relative">
+                    <img
+                      className="rounded-md"
+                      src={require("../assets/images/hero/img3.webp")}
+                      alt=""
+                    />
+                    <div className="absolute top-[30%] left-[10%] z-20 text-white">
+                      <div className="text-pri">WOKIEE</div>
+                      <div className="text-4xl font-medium my-5 text-black19">
+                        Premium Customer <br />
+                        Support Service
+                      </div>
+                      <div
+                        onClick={onMoveToProduct}
+                        className="flex justify-center items-center w-fit h-[50px] rounded-md py-[6px] px-[27px] bg-[#2879fe] hover:bg-[#2267d8] cursor-pointer transition-all duration-300"
+                      >
+                        DISCOVER NOW
+                      </div>
+                    </div>
+                  </div>
+                </Slider>
+              </div>
             </Grid>
-          </div>
+            <Grid item lg="4" md="12" className="md:hidden lg:block">
+              <div className="group h-[482.56px] relative cursor-pointer md:hidden lg:block">
+                <img
+                  className="relative rounded-md h-full group"
+                  src={require("../assets/images/hero/img4.webp")}
+                  alt=""
+                />
+                <div
+                  onClick={onMoveToProduct}
+                  className="absolute bottom-8 left-2/4 -translate-x-2/4 flex flex-col gap-2 justify-center items-center w-[223.16px] h-[114px] bg-white/90 rounded-md text-center font-medium transition-all duration-500 ease-in-out group-hover:scale-110 group-hover:bg-pri/80 group-hover:text-white"
+                >
+                  <div>TOP VIEW IN THIS WEEK</div>
+                  <div className="text-[26px]">TRENDING</div>
+                </div>
+              </div>
+            </Grid>
+          </Grid>
+        </div>
         <div>
           <Container>
             {/* banner */}
@@ -216,9 +224,13 @@ export default function Home() {
             <div className="mt-[52px]">
               <div className="text-center font-medium mb-8">
                 <h2 className="text-2xl">BEST SELLER</h2>
-                <div className="text-sm mt-[2px]">TOP PRODUCTS OF THIS WEEK</div>
+                <div className="text-sm mt-[2px]">
+                  TOP PRODUCTS OF THIS WEEK
+                </div>
               </div>
-              <div className={`grid grid-cols-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 mt-[15px] gap-5`}>
+              <div
+                className={`grid grid-cols-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 mt-[15px] gap-5`}
+              >
                 {/* product */}
                 {womenProduct
                   .map((item, key) => (
@@ -245,6 +257,61 @@ export default function Home() {
                     </div>
                   ))
                   .slice(0, 4)}
+              </div>
+              <div className="flex justify-center">
+                <button className="flex justify-center items-center w-fit mt-[25px] h-10 py-[6px] px-[29px] border-2 border-solid border-pri rounded-md transition-all duration-300 hover:bg-pri hover:text-white">
+                  LOAD MORE
+                </button>
+              </div>
+            </div>
+            <div className="mt-[52px]">
+              <div className="text-center font-medium mb-8">
+                <h2 className="text-2xl">LATEST FROM BLOG</h2>
+                <div className="text-sm mt-[2px]">
+                  THE FRESHEST AND MOST EXCITING NEWS
+                </div>
+              </div>
+              <Grid container spacing={2} columns={12}>
+                {blog
+                  .map((item, key) => (
+                    <Grid item lg={4}>
+                      <div key={key} className="overflow-hidden group h-[420px]">
+                        <div className="relative">
+                          <img
+                            onClick={onMoveDetail(item)}
+                            className="cursor-pointer"
+                            src={item.image}
+                            alt={item.title}
+                          />
+                          <div className="absolute -bottom-[30%] left-1/2 -translate-x-1/2 w-10/12 pt-[22px] px-[15px] pb-[10px] rounded-t-md bg-white text-center transition-all duration-300 ease-in-out group-hover:scale-110">
+                            <div className="text-sm text-pri cursor-pointer transition-all duration-300 ease-in-out hover:text-black19">
+                              {item.tag}
+                            </div>
+                            <div className="text-xl font-medium cursor-pointer transition-all duration-300 ease-in-out hover:text-pri">
+                              {item.title}
+                            </div>
+                            <p>{item.description}</p>
+                            <div className="flex">
+                              <div>
+                                <span>{item.author}</span>
+                                <span>{item.date}</span>
+                              </div>
+                              <div className="flex">
+                                <BsChat />
+                                {item.comment}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </Grid>
+                  ))
+                  .slice(0, 3)}
+              </Grid>
+              <div
+                className={`grid grid-cols-3 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-[15px] gap-5`}
+              >
+                {/* product */}
               </div>
             </div>
             {/* services */}
@@ -292,10 +359,11 @@ export default function Home() {
             </div>
           </Container>
         </div>
-
         {/* footer */}
       </div>
-      <Footer />
+      <div>
+        <Footer />
+      </div>
     </motion.div>
   );
 }

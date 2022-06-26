@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { motion } from "framer-motion";
 import {
   Container,
   Breadcrumbs,
   Grid,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
 } from "@mui/material";
-import { RiArrowDropDownLine } from "react-icons/ri";
+
 import { FaRegSquare } from "react-icons/fa";
 import { BsFillGridFill, BsFillGrid3X3GapFill } from "react-icons/bs";
 import { HiOutlineShoppingBag } from "react-icons/hi";
@@ -23,12 +21,10 @@ import {
   getWomenProducts,
 } from "../services/api";
 import { addProduct } from "../reducers/productSlice";
+import FilterSideBar from "../components/filterSideBar/FilterSideBar";
 export default function Products() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [collection, setCollection] = useState([]);
-  const [productType, setProductType] = useState([]);
-  const [womenColor, setWomenColor] = useState([]);
   const [womenProduct, setWomenProduct] = useState([]);
   const [classView, setClassView] = useState("grid-cols-4");
   const onChangeView = (type) => () => {
@@ -45,8 +41,8 @@ export default function Products() {
       case "fourCols":
         setClassView("grid-cols-4");
         break;
-        default:
-          setClassView("grid-cols-4");
+      default:
+        setClassView("grid-cols-4");
     }
   };
   const onMoveDetail = (item) => () => {
@@ -55,27 +51,6 @@ export default function Products() {
   const addToCart = (item) => () => {
     dispatch(addProduct(item));
   };
-  useEffect(() => {
-    const getAllCollections = async () => {
-      const collections = await getCollections();
-      setCollection(collections);
-    };
-    getAllCollections();
-  }, []);
-  useEffect(() => {
-    const getAllProductTypes = async () => {
-      const productTypes = await getProductTypes();
-      setProductType(productTypes);
-    };
-    getAllProductTypes();
-  }, []);
-  useEffect(() => {
-    const getAllWomenColors = async () => {
-      const womenColors = await getWomenColors();
-      setWomenColor(womenColors);
-    };
-    getAllWomenColors();
-  }, []);
   useEffect(() => {
     const getAllWomenProducts = async () => {
       let url = new URL(window.location.href);
@@ -95,7 +70,12 @@ export default function Products() {
     getAllWomenProducts();
   }, [window.location.href]);
   return (
-    <div className="wrapper">
+    <motion.div
+      className="wrapper"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       {/* header */}
       <div>
         <Header />
@@ -122,88 +102,7 @@ export default function Products() {
             <Grid container spacing={2} columns={12}>
               {/* side bar */}
               <Grid item lg={4}>
-                <div className="pr-[50px]">
-                  {/* COLLECTIONS */}
-                  <Accordion className="text-unset">
-                    <AccordionSummary
-                      expandIcon={<RiArrowDropDownLine />}
-                      aria-controls="panel1a-content"
-                      id="panel1a-header"
-                    >
-                      <h4 className="font-medium">COLLECTIONS</h4>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                      {collection.map((item, key) => (
-                        <p className="p-1 font-light" key={key}>
-                          <Link
-                            to={"/"}
-                            className="transition-all duration-500 hover:text-pri"
-                          >
-                            {item.name}
-                          </Link>
-                        </p>
-                      ))}
-                    </AccordionDetails>
-                  </Accordion>
-                  {/* PRODUCT TYPE */}
-                  <Accordion className="text-unset">
-                    <AccordionSummary
-                      expandIcon={<RiArrowDropDownLine />}
-                      aria-controls="panel1a-content"
-                      id="panel1a-header"
-                    >
-                      <h4 className="font-medium">PRODUCT TYPE</h4>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                      {productType.map((item, key) => (
-                        <p className="p-1" key={key}>
-                          <label
-                            htmlFor={item.id}
-                            className="font-light cursor-pointer transition-all duration-500 hover:text-pri"
-                          >
-                            <input
-                              type="checkbox"
-                              id={item.id}
-                              className="mr-1"
-                            />
-                            {item.name}
-                          </label>
-                        </p>
-                      ))}
-                    </AccordionDetails>
-                  </Accordion>
-                  {/* COLOR */}
-                  <Accordion className="text-unset">
-                    <AccordionSummary
-                      expandIcon={<RiArrowDropDownLine />}
-                      aria-controls="panel1a-content"
-                      id="panel1a-header"
-                    >
-                      <h4 className="font-medium">COLOR</h4>
-                    </AccordionSummary>
-                    <AccordionDetails className="flex flex-wrap">
-                      {womenColor.map((item, key) => (
-                        <div className="p-1" key={key}>
-                          <label
-                            htmlFor={item.id}
-                            className="cursor-pointer transition-all duration-500 hover:text-pri"
-                          >
-                            <input
-                              type="checkbox"
-                              id={item.id}
-                              className="mr-1 hidden"
-                            />
-                            <div
-                              className="w-8 h-8 rounded-md"
-                              title={item.name}
-                              style={{ background: `${item.hexId}` }}
-                            ></div>
-                          </label>
-                        </div>
-                      ))}
-                    </AccordionDetails>
-                  </Accordion>
-                </div>
+                <FilterSideBar />
               </Grid>
               {/* grid products */}
               <Grid item lg={8}>
@@ -244,7 +143,7 @@ export default function Products() {
                   </div>
                 </div>
                 {/* grid products */}
-                <div className={`grid ${classView} mt-[15px] gap-5`}>
+                <div className={`grid ${classView} mt-[15px] gap-5 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4`}>
                   {/* product */}
                   {womenProduct.map((item, key) => (
                     <div key={key} className="overflow-hidden group">
@@ -279,6 +178,6 @@ export default function Products() {
       <div>
         <Footer />
       </div>
-    </div>
+    </motion.div>
   );
 }

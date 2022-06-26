@@ -152,9 +152,14 @@ export default function Header() {
                           Sign In
                         </Link>
                       </div>
-                      <div className="flex gap-1 h-[28.8px]">
-                        <HiOutlineUser />
-                        Register
+                      <div>
+                        <Link
+                          to={"/register"}
+                          className="flex gap-1 h-[28.8px]"
+                        >
+                          <HiOutlineUser />
+                          Register
+                        </Link>
                       </div>
                     </div>
                   )}

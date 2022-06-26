@@ -1,10 +1,18 @@
 import {
+  blogs,
   categories,
   collectionFields,
   productTypeFields,
   womenColors,
   womenProducts,
 } from "./fakeData";
+export const getBlogs = async () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(blogs);
+    }, 1000);
+  });
+}
 export const getCategories = () => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
