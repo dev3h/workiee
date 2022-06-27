@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Container, Grid, Badge } from "@mui/material";
 import { CgSearch } from "react-icons/cg";
@@ -16,6 +16,7 @@ export default function Header() {
   const [searchValue, setSearchValue] = useState("");
   const cart = useSelector((store) => store.productSlice.cart);
   const account = useSelector((store) => store.authSlice.account);
+  const [scrollY, setScrollY] = useState(0);
   const onShowMenu = () => {
     setShow(!show);
   };
@@ -29,8 +30,21 @@ export default function Header() {
   const onSearch = () => {
     searchValue && navigate(`/products/?name=${searchValue}`);
   };
+  function logit() {
+    setScrollY(window.pageYOffset);
+  }
+  useEffect(() => {
+    function watchScroll() {
+      window.addEventListener("scroll", logit);
+    }
+    watchScroll();
+    // Remove listener (like componentWillUnmount)
+    return () => {
+      window.removeEventListener("scroll", logit);
+    };
+  }, []);
   return (
-    <div className="header w-full h-14 flex items-center shadow-[0_0_8px_rgba(0,0,0,0.2)]">
+    <div className={`header w-full h-14 flex items-center shadow-[0_0_8px_rgba(0,0,0,0.2)]`}>
       <Container fixed>
         <Grid
           container

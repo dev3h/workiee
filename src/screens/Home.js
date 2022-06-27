@@ -275,7 +275,10 @@ export default function Home() {
                 {blog
                   .map((item, key) => (
                     <Grid item lg={4}>
-                      <div key={key} className="overflow-hidden group h-[420px]">
+                      <div
+                        key={key}
+                        className="overflow-hidden group h-[420px]"
+                      >
                         <div className="relative">
                           <img
                             onClick={onMoveDetail(item)}
@@ -287,16 +290,19 @@ export default function Home() {
                             <div className="text-sm text-pri cursor-pointer transition-all duration-300 ease-in-out hover:text-black19">
                               {item.tag}
                             </div>
-                            <div className="text-xl font-medium cursor-pointer transition-all duration-300 ease-in-out hover:text-pri">
+                            <div className="mt-[7px] text-xl font-medium cursor-pointer transition-all duration-300 ease-in-out hover:text-pri">
                               {item.title}
                             </div>
-                            <p>{item.description}</p>
-                            <div className="flex">
-                              <div>
-                                <span>{item.author}</span>
+                            <p className="mt-4 text-sm font-light text-grey777">
+                              {item.description}
+                            </p>
+                            <div className="flex justify-center mt-[10px] gap-5">
+                              <div className="flex gap-1 text-xs text-grey999">
+                                <span>by</span>
+                                <span className="text-black19">{item.author}</span>
                                 <span>{item.date}</span>
                               </div>
-                              <div className="flex">
+                              <div className="flex gap-2 text-xs">
                                 <BsChat />
                                 {item.comment}
                               </div>

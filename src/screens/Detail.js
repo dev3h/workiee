@@ -50,9 +50,7 @@ export default function Detail() {
   return (
     <div className="wrapper">
       {/* header */}
-      <div>
-        <Header />
-      </div>
+      <Header />
       <div className="detail-main">
         {/* breadcrumb */}
         <div className="bg-whiteF7">
@@ -86,6 +84,7 @@ export default function Detail() {
                       <img src={productDetail.image} alt={productDetail.name} />
                     </div>
                   </Grid>
+                  {/* content */}
                   <Grid item lg={6}>
                     <div>
                       <span>
@@ -275,13 +274,32 @@ export default function Detail() {
                 </TabContext>
               </Box>
             </div>
+            {/*  */}
           </Container>
+          {scrollY > 500 && (
+            <div className="fixed bottom-0 text-xl bg-black flex justify-center items-center gap-[52px] w-full h-[82px] py-[30px]">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-10">
+                  <img src={productDetail.image} alt={productDetail.name} />
+                </div>
+                <div className="text-white">
+                  <h3 className="text-sm">{productDetail.name}</h3>
+                  <div>${productDetail.price}</div>
+                </div>
+              </div>
+              <button
+                onClick={addToCart(productDetail)}
+                className="px-4 py-[9px] bg-pri text-white flex items-center justify-center w-fit h-10 gap-[5px] rounded-md transition-all duration-300 ease-in-out hover:bg-[#2267d8]"
+              >
+                <HiOutlineShoppingBag />
+                <span className="text-sm">ADD TO CART</span>
+              </button>
+            </div>
+          )}
         </div>
       </div>
       {/* footer */}
-      <div>
-        <Footer />
-      </div>
+      <Footer />
     </div>
   );
 }

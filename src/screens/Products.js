@@ -143,7 +143,7 @@ export default function Products() {
                   </div>
                 </div>
                 {/* grid products */}
-                <div className={`grid ${classView} mt-[15px] gap-5 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4`}>
+                <div className={`grid ${classView} mt-[15px] gap-5`}>
                   {/* product */}
                   {womenProduct.map((item, key) => (
                     <div key={key} className="overflow-hidden group">
