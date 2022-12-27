@@ -12,14 +12,14 @@ export const getBlogs = async () => {
       resolve(blogs);
     }, 1000);
   });
-}
+};
 export const getCategories = () => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(categories);
     }, 1000);
   });
-}
+};
 export const getCollections = () => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {

@@ -92,7 +92,7 @@ export default function Products() {
               >
                 Home
               </Link>
-              <p>Women</p>
+              <p>Shop</p>
             </Breadcrumbs>
           </Container>
         </div>

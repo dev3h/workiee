@@ -44,7 +44,9 @@ export default function Header() {
     };
   }, []);
   return (
-    <div className={`header w-full h-14 flex items-center shadow-[0_0_8px_rgba(0,0,0,0.2)]`}>
+    <div
+      className={`header w-full h-14 flex items-center shadow-[0_0_8px_rgba(0,0,0,0.2) shadow-md`}
+    >
       <Container fixed>
         <Grid
           container
@@ -63,51 +65,22 @@ export default function Header() {
               />
             </Link>
           </Grid>
+          {/* nav bar */}
           <Grid item lg={6}>
-            <div className="flex justify-start items-center gap-6 sm:hidden md:hidden lg:flex">
+            <div className="flex items-center justify-start gap-6 xs:hidden sm:hidden md:hidden lg:flex">
               <Link to="/" className="uppercase text-pri">
-                home
-              </Link>
-              <Link
-                to="/"
-                className="uppercase transition-all duration-300 hover:text-pri"
-              >
-                shop
-              </Link>
-              <Link
-                to="/"
-                className="uppercase transition-all duration-300 hover:text-pri"
-              >
-                page
-              </Link>
-              <Link
-                to="/"
-                className="uppercase transition-all duration-300 hover:text-pri"
-              >
-                blog
-              </Link>
-              <Link
-                to="/"
-                className="uppercase transition-all duration-300 hover:text-pri"
-              >
-                portfolio
+                Home
               </Link>
               <Link
                 to="/products"
                 className="uppercase transition-all duration-300 hover:text-pri"
               >
-                women
-              </Link>
-              <Link
-                to="/"
-                className="uppercase transition-all duration-300 hover:text-pri"
-              >
-                men
+                Shop
               </Link>
             </div>
           </Grid>
           <Grid item lg={4}>
-            <div className="flex justify-end items-center gap-4">
+            <div className="flex items-center justify-end gap-4">
               <div className="relative flex-grow">
                 <input
                   onChange={onChangeSearch}
@@ -122,14 +95,14 @@ export default function Header() {
                 />
                 <CgSearch
                   onClick={onSearch}
-                  className="absolute top-1/2 right-2 -translate-y-1/2 cursor-pointer transition-all duration-300 hover:text-pri text-lg"
+                  className="absolute text-lg transition-all duration-300 -translate-y-1/2 cursor-pointer top-1/2 right-2 hover:text-pri"
                   title="search"
                 />
               </div>
               <Link to={"/cart"}>
                 <Badge badgeContent={cart.length} color="primary">
                   <HiOutlineShoppingBag
-                    className="cursor-pointer transition-all duration-300 hover:text-pri text-lg"
+                    className="text-lg transition-all duration-300 cursor-pointer hover:text-pri"
                     title="cart"
                   />
                 </Badge>
@@ -138,74 +111,42 @@ export default function Header() {
                 {account ? (
                   <FaRegUserCircle
                     onClick={onShowMenu}
-                    className="cursor-pointer transition-all duration-300 hover:text-pri text-lg"
+                    className="text-lg transition-all duration-300 cursor-pointer hover:text-pri"
                     title="My Account"
                     // style={{border:account?'1px solid #ccc':'none', borderRadius:account?'50%':'none', background:account?'#2879fe':'none', color:account?'#e9e7e7':'#191919'}}
                   />
                 ) : (
-                  <HiOutlineUser
-                    onClick={onShowMenu}
-                    className="cursor-pointer transition-all duration-300 hover:text-pri text-lg"
-                    title="My Account"
-                  />
+                  <Link to={"/login"}>
+                    <HiOutlineUser
+                      className="text-lg transition-all duration-300 cursor-pointer hover:text-pri"
+                      title="My Account"
+                    />
+                  </Link>
                 )}
                 <div
-                  className="absolute z-10 -right-4 top-6 w-[280px] h-[205.2px] py-[30px] pl-[39px] pr-5 bg-white shadow-[0_2px_5px_rgba(0,0,0,0.5)] transition-all duration-300"
+                  className="absolute z-10 -right-4 top-6 w-[280px] py-[30px] pl-[39px] pr-5 bg-white shadow-[0_2px_5px_rgba(0,0,0,0.5)] transition-all duration-300"
                   style={{ display: show ? "block" : "none" }}
                 >
-                  {account ? (
-                    <div className="flex gap-1 h-[28.8px]">
-                      <HiOutlineUser />
-                      Account
-                    </div>
-                  ) : (
-                    <div>
-                      <div>
-                        <Link to={"/login"} className="flex gap-1 h-[28.8px]">
-                          <BiLock />
-                          Sign In
-                        </Link>
-                      </div>
-                      <div>
-                        <Link
-                          to={"/register"}
-                          className="flex gap-1 h-[28.8px]"
-                        >
-                          <HiOutlineUser />
-                          Register
-                        </Link>
-                      </div>
-                    </div>
-                  )}
-
                   <div className="flex gap-1 h-[28.8px]">
+                    <HiOutlineUser />
+                    Account
+                  </div>
+                  <Link to={'/cart'} className="flex gap-1 h-[28.8px]">
                     <HiOutlineShoppingBag />
                     View Cart
+                  </Link>
+                  <div
+                    onClick={onHandlerAuth}
+                    className="flex gap-1 h-[28.8px] cursor-pointer"
+                  >
+                    <FiLogOut />
+                    Logout
                   </div>
-                  <div className="flex gap-1 h-[28.8px]">
-                    <FaRegHeart />
-                    Wishlist
-                  </div>
-                  <div className="flex gap-1 h-[28.8px]">
-                    <BiGitCompare />
-                    Compare
-                  </div>
-                  {account ? (
-                    <div
-                      onClick={onHandlerAuth}
-                      className="flex gap-1 h-[28.8px] cursor-pointer"
-                    >
-                      <FiLogOut />
-                      Logout
-                    </div>
-                  ) : (
-                    <div></div>
-                  )}
                 </div>
               </div>
 
               <BsSliders
-                className="cursor-pointer transition-all duration-300 hover:text-pri text-lg"
+                className="text-lg transition-all duration-300 cursor-pointer hover:text-pri"
                 title="Settings"
               />
             </div>

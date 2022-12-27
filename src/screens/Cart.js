@@ -18,9 +18,7 @@ export default function Cart() {
   const cartData = useSelector((store) => store.productSlice.cart);
   const onchangeQuantity = (type, item) => () => {
     if (type === "increase") {
-      dispatch(
-        changeQuantity({ ...item, quantity: Number(item?.quantity) + 1 })
-      );
+      dispatch(changeQuantity({ ...item, quantity: Number(item?.quantity) + 1 }));
     } else {
       dispatch(
         changeQuantity({
@@ -55,10 +53,7 @@ export default function Cart() {
         <div className="bg-whiteF7">
           <Container maxWidth="lg">
             <Breadcrumbs aria-label="breadcrumb">
-              <Link
-                to={"/"}
-                className="transition-all duration-500 hover:text-pri"
-              >
+              <Link to={"/"} className="transition-all duration-500 hover:text-pri">
                 Home
               </Link>
               <p>Your Shopping Cart</p>
@@ -74,11 +69,9 @@ export default function Cart() {
                   <HiOutlineShoppingBag className="text-[150px] text-[#ebecee]" />
                 </div>
                 <h1 class="text-[34px] font-medium">SHOPPING CART IS EMPTY</h1>
-                <p className="mt-[2px]">
-                  You have no items in your shopping cart.
-                </p>
+                <p className="mt-[2px]">You have no items in your shopping cart.</p>
                 <Link
-                  to={"/"}
+                  to={"/products"}
                   className="inline-block h-10 rounded-md leading-loose py-[6px] px-[31px] mt-[34px] text-sm text-white bg-pri transition-all duration-300 hover:bg-[#2267d8]"
                 >
                   CONTINUE SHOPPING
@@ -93,14 +86,12 @@ export default function Cart() {
                 <div>
                   <table className="w-full">
                     <thead>
-                      <th className="text-left pb-5 font-medium">PRODUCT</th>
+                      <th className="pb-5 font-medium text-left">PRODUCT</th>
                       <th></th>
-                      <th className="text-left pb-5 font-medium">UNIT PRICE</th>
-                      <th className="text-left pb-5 font-medium">QUANTITY</th>
-                      <th className="text-left pb-5 font-medium">
-                        TOTAL PRICE
-                      </th>
-                      <th className="text-left pb-5 font-medium">ACTIONS</th>
+                      <th className="pb-5 font-medium text-left">UNIT PRICE</th>
+                      <th className="pb-5 font-medium text-left">QUANTITY</th>
+                      <th className="pb-5 font-medium text-left">TOTAL PRICE</th>
+                      <th className="pb-5 font-medium text-left">ACTIONS</th>
                     </thead>
                     <tbody>
                       {cartData.map((item, key) => (
@@ -111,11 +102,7 @@ export default function Cart() {
                           {/* image product cart */}
                           <td className="w-[121px] py-5">
                             <div className="w-full h-[125px]">
-                              <img
-                                src={item.image}
-                                alt=""
-                                className="w-[100px] h-full"
-                              />
+                              <img src={item.image} alt="" className="w-[100px] h-full" />
                             </div>
                           </td>
                           {/* detail product cart */}
@@ -204,7 +191,7 @@ export default function Cart() {
                     container
                     spacing={2}
                     columns={24}
-                    className="h-full gap-3 justify-center"
+                    className="justify-center h-full gap-3"
                   >
                     <Grid item lg={8}>
                       {/* <div className="pt-8 pb-[35px] px-[39px] border border-solid border-whiteE9"></div> */}
@@ -239,8 +226,8 @@ export default function Cart() {
                             htmlFor="cart-term"
                             className="flex items-center gap-2 cursor-pointer"
                           >
-                            <input type="checkbox" id="cart-term" />I agree with
-                            the terms and conditions
+                            <input type="checkbox" id="cart-term" />I agree with the terms
+                            and conditions
                           </label>
                         </div>
                         {/* check out btn*/}

@@ -1,68 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Container, Grid } from "@mui/material";
-import {
-  FaFacebookF,
-  FaTwitter,
-  FaGoogle,
-  FaInstagram,
-  FaPinterestP,
-} from "react-icons/fa";
+
 export default function Footer() {
   return (
-    <div className="footer h-auto pb-14 mt-[60px]">
-      {/* footer top */}
-      <div className="bg-pri h-16 sm:h-auto md:h-16 lg:h-16">
-        <Container className="h-full">
-          <div className="flex justify-between items-center sm:flex-col md:flex-row lg:flex-row h-full">
-            <h4 className=" uppercase text-white">be in touch with us:</h4>
-            <div className="form-group relative h-10 sm:w-full md:w-auto lg:w-auto bg-white flex items-center rounded-md">
-              <input
-                type="email"
-                placeholder="Enter your e-mail"
-                className="block h-full pt-1 pr-3 pb-px pl-4 w-96 rounded-md rounded-bl-md focus:outline-none"
-              />
-              <button className="absolute right-0 flex justify-center items-center h-full transition-all duration-300 uppercase bg-black30 p-4 px-5 rounded-tr-md rounded-br-md text-white hover:bg-black">
-                join us
-              </button>
-            </div>
-            <div className="flex gap-4 text-white">
-              <a
-                href="!#"
-                className="transition-all duration-300 hover:text-black30"
-              >
-                <FaFacebookF />
-              </a>
-              <a
-                href="!#"
-                className="transition-all duration-300 hover:text-black30"
-              >
-                <FaTwitter />
-              </a>
-              <a
-                href="!#"
-                className="transition-all duration-300 hover:text-black30"
-              >
-                <FaGoogle />
-              </a>
-              <a
-                href="!#"
-                className="transition-all duration-300 hover:text-black30"
-              >
-                <FaInstagram />
-              </a>
-              <a
-                href="!#"
-                className="transition-all duration-300 hover:text-black30"
-              >
-                <FaPinterestP />
-              </a>
-            </div>
-          </div>
-        </Container>
-      </div>
+    <div className="footer bg-whiteD8">
       {/* footer bottom */}
-      <div className="bg-whiteF7 mt-4 h-auto sm:text-center md:text-center lg:text-left">
+      <div className="h-auto mt-4 sm:text-center md:text-center lg:text-left">
         <Container className="h-auto">
           <Grid
             container
@@ -73,9 +17,7 @@ export default function Footer() {
           >
             {/* col 1 */}
             <Grid item sm={6} md={6} lg={3}>
-              <h4 className="font-medium leading-6 pb-4">
-                CATEGORIES
-              </h4>
+              <h4 className="pb-4 font-medium leading-6">CATEGORIES</h4>
               <ul className="text-grey888">
                 <li className="h-7">
                   <Link to={"/"}>Women</Link>
@@ -99,9 +41,7 @@ export default function Footer() {
             </Grid>
             {/* col 2 */}
             <Grid item sm={6} md={6} lg={3}>
-              <h4 className="font-medium leading-6 pb-4 ">
-                BUY WITH US
-              </h4>
+              <h4 className="pb-4 font-medium leading-6 ">BUY WITH US</h4>
               <ul className="text-grey888">
                 <li className="h-7">
                   <Link to={"/"}>About Us</Link>
@@ -128,36 +68,29 @@ export default function Footer() {
             </Grid>
             {/* col 3 */}
             <Grid item sm={6} md={6} lg={3}>
-              <h4 className="font-medium leading-6 pb-4 ">
-                ABOUT
-              </h4>
+              <h4 className="pb-4 font-medium leading-6 ">ABOUT</h4>
               <div className="text-grey888">
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                laboris nisi ut aliquip ex ea commodo consequat. Ut enim ad
-                minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip ex ea commodo consequat tempor incididunt.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                aliquip ex ea commodo consequat. Ut enim ad minim veniam, quis nostrud
+                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
+                tempor incididunt.
               </div>
             </Grid>
             {/* col 4 */}
             <Grid item sm={6} md={6} lg={3}>
-              <h4 className="font-medium leading-6 pb-4 ">
-                CONTACT US
-              </h4>
+              <h4 className="pb-4 font-medium leading-6 ">CONTACT US</h4>
               <div className="text-grey888">
                 <address>
                   <p>
-                    <span>ADDRESS:</span> 7895
-                    Piermont Dr NE Albuquerque, NM 198866, United States of
-                    America
+                    <span>ADDRESS:</span> 7895 Piermont Dr NE Albuquerque, NM 198866,
+                    United States of America
                   </p>
                 </address>
                 <p>
-                  <span>PHONE:</span> +566 4774 9930;
-                  +566 4774 9940
+                  <span>PHONE:</span> +566 4774 9930; +566 4774 9940
                 </p>
                 <p>
-                  <span>HOURS:</span> all week from 9
-                  am to 9 pm
+                  <span>HOURS:</span> all week from 9 am to 9 pm
                 </p>
                 <p>
                   <span>E-MAIL:</span>
