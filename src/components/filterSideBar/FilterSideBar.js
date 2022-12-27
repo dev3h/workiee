@@ -2,13 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import { RiArrowDropDownLine } from "react-icons/ri";
-import {
-  getCollections,
-  getProductTypes,
-  getWomenColors,
-} from "../../services/api";
-export default function FilterSideBar() {
-  const [collection, setCollection] = useState([]);
+import { getCategories, getProductTypes, getWomenColors } from "../../services/api";
+export default function FilterSideBar({ handleSelected }) {
+  const [collections, setCollections] = useState([]);
   const [productType, setProductType] = useState([]);
   const [womenColor, setWomenColor] = useState([]);
   const [selectedProductType, setSelectedProductType] = useState([]);
@@ -22,13 +18,16 @@ export default function FilterSideBar() {
     } else {
       setSelectedProductType([...selectedProductType, productType.id]);
     }
-    console.log(productType.id);
+  };
+
+  const handleSelectCollection = (collection) => {
+    handleSelected(collection);
   };
 
   useEffect(() => {
     const getAllCollections = async () => {
-      const collections = await getCollections();
-      setCollection(collections);
+      const response = await getCategories();
+      setCollections(response);
     };
     getAllCollections();
   }, []);
@@ -58,15 +57,20 @@ export default function FilterSideBar() {
           <h4 className="font-medium">COLLECTIONS</h4>
         </AccordionSummary>
         <AccordionDetails>
-          {collection.map((item, key) => (
-            <p className="p-1 font-light" key={key}>
-              <Link
-                to={"/"}
-                className="transition-all duration-500 hover:text-pri"
-              >
-                {item.name}
-              </Link>
-            </p>
+          <div
+            onClick={() => handleSelectCollection("all")}
+            className="p-2 transition-all border-b duration-500 cursor-pointer hover:text-pri"
+          >
+            ALL
+          </div>
+          {collections.map((item, key) => (
+            <div
+              key={item.id}
+              onClick={() => handleSelectCollection(item.id)}
+              className="p-2 transition-all border-b duration-500 cursor-pointer hover:text-pri"
+            >
+              {item.name}
+            </div>
           ))}
         </AccordionDetails>
       </Accordion>

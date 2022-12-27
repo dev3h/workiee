@@ -7,10 +7,12 @@ import { HiOutlineShoppingBag } from "react-icons/hi";
 import { BsHeadset } from "react-icons/bs";
 import { TbArrowBackUp } from "react-icons/tb";
 import { FaShippingFast } from "react-icons/fa";
+
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import { getProductDetail } from "../services/api";
 import { addProduct } from "../reducers/productSlice";
+
 export default function Detail() {
   const dispatch = useDispatch();
   const params = useParams();

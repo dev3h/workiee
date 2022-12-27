@@ -1,4 +1,4 @@
-export const blogs = [
+const blogs = [
   {
     image: require("../assets/images/blog/img1.webp"),
     tag: "LADIES",
@@ -30,12 +30,7 @@ export const blogs = [
     comment: 10,
   },
 ];
-export const categories = [
-  {
-    name: "SALE",
-    id: "sale",
-    image: require("../assets/images/category/img1.webp"),
-  },
+ const categories = [
   {
     name: "WOMEN",
     id: "women",
@@ -52,32 +47,14 @@ export const categories = [
     image: require("../assets/images/category/img4.webp"),
   },
   {
-    name: "NEW",
-    id: "new",
-    image: require("../assets/images/category/img5.webp"),
-  },
-  {
     name: "SHOES",
     id: "shoes",
     image: require("../assets/images/category/img6.webp"),
   },
-];
-export const collectionFields = [
   {
-    name: "Womens",
-    link: "/Womens",
-  },
-  {
-    name: "Mens",
-    link: "/Mens",
-  },
-  {
-    name: "Trending",
-    link: "/Trending",
-  },
-  {
-    name: "New",
-    link: "/New",
+    name: "GLASSES",
+    id: "glasses",
+    image: require("../assets/images/category/img6.webp"),
   },
 ];
 export const productTypeFields = [
@@ -114,7 +91,7 @@ export const productTypeFields = [
     id: "sweater",
   },
 ];
-export const womenColors = [
+const womenColors = [
   {
     hexId: "#fbdbb5",
     name: "Beige",
@@ -161,7 +138,7 @@ export const womenColors = [
     id: "white",
   },
 ];
-export const womenProducts = [
+const womenProducts = [
   {
     id: 1,
     sku: 462,
@@ -207,6 +184,7 @@ export const womenProducts = [
       sizes: [20, 24],
       material: "100% Polyester",
     },
+    collection: "men",
   },
   {
     id: 2,
@@ -253,6 +231,7 @@ export const womenProducts = [
       sizes: [20, 24],
       material: "100% Polyester",
     },
+    collection: "women",
   },
   {
     id: 3,
@@ -295,6 +274,7 @@ export const womenProducts = [
       sizes: [20, 24],
       material: "100% Polyester",
     },
+    collection: 'women'
   },
   {
     id: 4,
@@ -337,6 +317,7 @@ export const womenProducts = [
       sizes: [20, 24],
       material: "100% Polyester",
     },
+    collection: 'men'
   },
   {
     id: 5,
@@ -379,6 +360,7 @@ export const womenProducts = [
       sizes: [20, 24],
       material: "100% Polyester",
     },
+    collection: 'women'
   },
   {
     id: 6,
@@ -421,6 +403,7 @@ export const womenProducts = [
       sizes: [20, 24],
       material: "100% Polyester",
     },
+    collection: 'glasses'
   },
   {
     id: 7,
@@ -463,6 +446,7 @@ export const womenProducts = [
       sizes: [20, 24],
       material: "100% Polyester",
     },
+    collection: 'men'
   },
   {
     id: 8,
@@ -509,5 +493,7 @@ export const womenProducts = [
       sizes: [20, 24],
       material: "100% Polyester",
     },
+    collection: 'glasses'
   },
 ];
+export { blogs, categories, womenColors, womenProducts };

@@ -2,11 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { motion } from "framer-motion";
-import {
-  Container,
-  Breadcrumbs,
-  Grid,
-} from "@mui/material";
+import { Container, Breadcrumbs, Grid } from "@mui/material";
 
 import { FaRegSquare } from "react-icons/fa";
 import { BsFillGridFill, BsFillGrid3X3GapFill } from "react-icons/bs";
@@ -15,18 +11,17 @@ import { FcGrid } from "react-icons/fc";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import {
-  getCollections,
-  getProductTypes,
-  getWomenColors,
   getWomenProducts,
 } from "../services/api";
 import { addProduct } from "../reducers/productSlice";
 import FilterSideBar from "../components/filterSideBar/FilterSideBar";
+
 export default function Products() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [womenProduct, setWomenProduct] = useState([]);
   const [classView, setClassView] = useState("grid-cols-4");
+  const [collectionSelected, setCollectionSelected] = useState("all");
   const onChangeView = (type) => () => {
     switch (type) {
       case "oneCol":
@@ -51,24 +46,32 @@ export default function Products() {
   const addToCart = (item) => () => {
     dispatch(addProduct(item));
   };
+
   useEffect(() => {
     const getAllWomenProducts = async () => {
       let url = new URL(window.location.href);
       let productName = url.searchParams.get("name");
       const womenProducts = await getWomenProducts();
-      setWomenProduct(womenProducts);
-      if (productName !== "") {
+      
+      collectionSelected === 'all' && setWomenProduct(womenProducts);
+      if (productName !== null) {
         setWomenProduct(
           womenProducts?.filter((product) => {
-            return product.name
-              .toLowerCase()
-              .includes(productName.toLowerCase());
+            return product?.name?.toLowerCase().includes(productName?.toLowerCase());
           })
         );
       }
+      const filterData = womenProducts?.filter((product) => {
+        return product.collection === collectionSelected;
+      });
+      setWomenProduct(filterData);
     };
     getAllWomenProducts();
-  }, [window.location.href]);
+  }, [collectionSelected]);
+
+  const filterProductByCollection = (collection) => {
+    setCollectionSelected(collection);
+  };
   return (
     <motion.div
       className="wrapper"
@@ -86,10 +89,7 @@ export default function Products() {
         <div className="bg-whiteF7">
           <Container maxWidth="lg">
             <Breadcrumbs aria-label="breadcrumb">
-              <Link
-                to={"/"}
-                className="transition-all duration-500 hover:text-pri"
-              >
+              <Link to={"/"} className="transition-all duration-500 hover:text-pri">
                 Home
               </Link>
               <p>Shop</p>
@@ -102,17 +102,17 @@ export default function Products() {
             <Grid container spacing={2} columns={12}>
               {/* side bar */}
               <Grid item lg={4}>
-                <FilterSideBar />
+                <FilterSideBar handleSelected={filterProductByCollection} />
               </Grid>
               {/* grid products */}
               <Grid item lg={8}>
                 {/* filter bar */}
                 <div className="filter-products flex justify-between items-center">
                   <h2 className="font-medium text-2xl">
-                    Women({womenProduct.length})
+                    {collectionSelected} ({womenProduct.length})
                   </h2>
                   <div className="flex items-center gap-3">
-                    <select class="sort-position font-light cursor-pointer">
+                    <select className="sort-position font-light cursor-pointer">
                       <option>Featured</option>
                       <option>Name Ascending</option>
                       <option>Name Descending</option>

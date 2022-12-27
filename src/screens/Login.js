@@ -68,13 +68,13 @@ export default function Login() {
           </Container>
         </div>
         <Container maxWidth="lg">
-          <h1 class="text-center font-medium text-[34px] leading-[44px] py-[50px]">
+          <h1 className="text-center font-medium text-[34px] leading-[44px] py-[50px]">
             ALREADY REGISTERED?
           </h1>
           <Grid container spacing={2} columns={12}>
             <Grid item lg={6}>
               <div className="h-full py-8 px-[39px] border border-solid border-whiteE9">
-                <h2 class="text-xl font-medium pb-[14px]">NEW CUSTOMER</h2>
+                <h2 className="text-xl font-medium pb-[14px]">NEW CUSTOMER</h2>
                 <p className="text-sm text-grey777">
                   By creating an account with our store, you will be able to
                   move through the checkout process faster, store multiple
@@ -93,7 +93,7 @@ export default function Login() {
             {/* login form */}
             <Grid item lg={6}>
               <div className="login-form py-8 px-[39px] border border-solid border-whiteE9">
-                <h2 class="text-xl font-medium pb-[14px]">LOGIN</h2>
+                <h2 className="text-xl font-medium pb-[14px]">LOGIN</h2>
                 <p> If you have an account with us, please log in.</p>
                 <form onSubmit={formik.handleSubmit} className="mt-[17px]">
                   {/* email */}

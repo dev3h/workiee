@@ -1,7 +1,6 @@
 import {
   blogs,
   categories,
-  collectionFields,
   productTypeFields,
   womenColors,
   womenProducts,
@@ -17,13 +16,6 @@ export const getCategories = () => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(categories);
-    }, 1000);
-  });
-};
-export const getCollections = () => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(collectionFields);
     }, 1000);
   });
 };

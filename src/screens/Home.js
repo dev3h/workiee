@@ -112,28 +112,6 @@ export default function Home() {
       <Header />
       <div className="py-5 home-main">
         <Container>
-          {/* category */}
-          <div className="p-5 category">
-            <Grid container spacing={2} lg={12}>
-              {category.map((item, key) => (
-                <Grid item sm="6" md="4" lg="2" key={key}>
-                  <div className="relative overflow-hidden cursor-pointer h-28 group">
-                    <img
-                      src={item.image}
-                      alt=""
-                      className="object-top h-full transition-all duration-500 ease-in-out group-hover:scale-110"
-                    />
-                    <button
-                      className="absolute h-12 font-medium transition-all duration-500 ease-in-out rounded-md top-2/4 left-2/4 w-28 bg-white/80 group-hover:bg-violet-500/80 group-hover:text-white"
-                      style={{ transform: "translate(-50%, -50%)" }}
-                    >
-                      {item.name}
-                    </button>
-                  </div>
-                </Grid>
-              ))}
-            </Grid>
-          </div>
           {/* best seller */}
           <div className="mt-[52px]">
             <div className="mb-8 font-medium text-center">

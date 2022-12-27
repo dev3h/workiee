@@ -68,7 +68,7 @@ export default function Cart() {
                 <div className="flex justify-center">
                   <HiOutlineShoppingBag className="text-[150px] text-[#ebecee]" />
                 </div>
-                <h1 class="text-[34px] font-medium">SHOPPING CART IS EMPTY</h1>
+                <h1 className="text-[34px] font-medium">SHOPPING CART IS EMPTY</h1>
                 <p className="mt-[2px]">You have no items in your shopping cart.</p>
                 <Link
                   to={"/products"}

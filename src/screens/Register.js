@@ -67,12 +67,12 @@ export default function Register() {
           </Container>
         </div>
         <Container maxWidth="lg">
-          <h1 class="text-center font-medium text-[34px] leading-[44px] py-[50px]">
+          <h1 className="text-center font-medium text-[34px] leading-[44px] py-[50px]">
             CREATE AN ACCOUNT
           </h1>
           {/* register form */}
           <div className="w-[580px] mx-auto py-8 px-[39px] border border-solid border-whiteE9">
-            <h2 class="text-xl font-medium pb-[14px]">PERSONAL INFORMATION</h2>
+            <h2 className="text-xl font-medium pb-[14px]">PERSONAL INFORMATION</h2>
             <form onSubmit={formik.handleSubmit}>
               {/* first name */}
               <div className="mb-5">
