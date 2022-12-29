@@ -10,9 +10,7 @@ import { HiOutlineShoppingBag } from "react-icons/hi";
 import { FcGrid } from "react-icons/fc";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
-import {
-  getWomenProducts,
-} from "../services/api";
+import { getWomenProducts } from "../services/api";
 import { addProduct } from "../reducers/productSlice";
 import FilterSideBar from "../components/filterSideBar/FilterSideBar";
 
@@ -49,25 +47,32 @@ export default function Products() {
 
   useEffect(() => {
     const getAllWomenProducts = async () => {
+      const womenProducts = await getWomenProducts();
+      if(collectionSelected === "all") {
+      setWomenProduct(womenProducts);
+      } else {
+        const filterData = womenProducts?.filter((product) => {
+          return product.collection === collectionSelected;
+        });
+        setWomenProduct(filterData);
+      }
       let url = new URL(window.location.href);
       let productName = url.searchParams.get("name");
-      const womenProducts = await getWomenProducts();
-      
-      collectionSelected === 'all' && setWomenProduct(womenProducts);
-      if (productName !== null) {
-        setWomenProduct(
-          womenProducts?.filter((product) => {
-            return product?.name?.toLowerCase().includes(productName?.toLowerCase());
-          })
-        );
-      }
-      const filterData = womenProducts?.filter((product) => {
-        return product.collection === collectionSelected;
-      });
-      setWomenProduct(filterData);
+
+    if (productName !== null) {
+      filterByName(womenProducts,productName);
+    }  
     };
     getAllWomenProducts();
   }, [collectionSelected]);
+
+  const filterByName = (womenProducts,productName) => {
+      setWomenProduct(
+        womenProducts?.filter((product) => {
+          return product?.name?.toLowerCase().includes(productName?.toLowerCase());
+        })
+      );
+  };
 
   const filterProductByCollection = (collection) => {
     setCollectionSelected(collection);
@@ -96,8 +101,7 @@ export default function Products() {
             </Breadcrumbs>
           </Container>
         </div>
-        {/*  */}
-        <div className="mt-[52px]">
+        <div className="mt-[52px] mb-16">
           <Container maxWidth="lg">
             <Grid container spacing={2} columns={12}>
               {/* side bar */}
@@ -107,12 +111,12 @@ export default function Products() {
               {/* grid products */}
               <Grid item lg={8}>
                 {/* filter bar */}
-                <div className="filter-products flex justify-between items-center">
-                  <h2 className="font-medium text-2xl">
+                <div className="flex items-center justify-between filter-products">
+                  <h2 className="text-2xl font-medium">
                     {collectionSelected} ({womenProduct.length})
                   </h2>
                   <div className="flex items-center gap-3">
-                    <select className="sort-position font-light cursor-pointer">
+                    <select className="font-light cursor-pointer sort-position">
                       <option>Featured</option>
                       <option>Name Ascending</option>
                       <option>Name Descending</option>
@@ -153,7 +157,7 @@ export default function Products() {
                         src={item.image}
                         alt={item.name}
                       />
-                      <div className="text-center pt-4 translate-y-10 transition-all duration-300  group-hover:translate-y-0">
+                      <div className="pt-4 text-center transition-all duration-300 translate-y-10 group-hover:translate-y-0">
                         <h6 className="text-xs text-[#999]">{item.band}</h6>
                         <div>{item.star}</div>
                         <h2 className="text-sm">{item.name}</h2>
